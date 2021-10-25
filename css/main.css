@@ -141,11 +141,12 @@ p {
 .twyt-url{
     display: flex;
     justify-content: flex-end;
+    overflow-wrap: break-word;
 }
 
 .twyt-url > span{
     padding-right: 10px;
-    overflow-wrap: break-word;
+    
 }
 
 @media screen and (max-width: 600px) {
