@@ -145,6 +145,7 @@ p {
 
 .twyt-url > span{
     padding-right: 10px;
+    overflow-wrap: break-word;
 }
 
 @media screen and (max-width: 600px) {
