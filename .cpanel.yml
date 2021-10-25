@@ -1,0 +1,5 @@
+---
+  deployment:
+    tasks:
+      - export DEPLOYPATH=/home/jafsoftc/public_html/mytwyt
+      - /bin/cp -a * $DEPLOYPATH
