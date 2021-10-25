@@ -8,6 +8,7 @@ try {
     $connection = new Connection;
     $twytService = new TwytService();
     $twytView = new TwytView($connection);
+    $twytService->fetchListStatusJson(203356824,'technology');
     echo $twytView->view($twytService->getTechnologyJsonPath());
 } catch (\Throwable $e) {
     echo "Sorry";
