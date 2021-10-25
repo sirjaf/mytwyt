@@ -141,7 +141,7 @@ p {
 .twyt-url{
     display: flex;
     justify-content: flex-end;
-    overflow-wrap: break-word;
+    overflow: hidden;
 }
 
 .twyt-url > span{
