@@ -1,6 +1,6 @@
 <?php
 //require $_SERVER['DOCUMENT_ROOT'].'/mytwyt/vendor/src/TwitterOAuth.php';
-require $_SERVER['DOCUMENT_ROOT']."/mytwyt/vendor/autoload.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/vendor/autoload.php";
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
@@ -42,13 +42,18 @@ class TwytService
 
     public function fetchHomeTimelineJson()
     {
-        $result = $this->connection->get(self::HOME_TIMELINE, ["count" => 100, "exclude_replies" => false]);
-        echo $result;
-        $myResult = json_encode($result, JSON_UNESCAPED_SLASHES);
-        $myFile = $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/jsons/homeTimeline.json";
-        $fp = fopen($myFile, 'w');
-        fwrite($fp, $myResult);
-        return $myResult;
+        try {
+            $result = $this->connection->get(self::HOME_TIMELINE, ["count" => 100, "exclude_replies" => false]);
+            echo $result;
+            $myResult = json_encode($result, JSON_UNESCAPED_SLASHES);
+            $myFile = $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/jsons/homeTimeline.json";
+            $fp = fopen($myFile, 'w');
+            fwrite($fp, $myResult);
+            return $myResult;
+        } catch (\Throwable $e) {
+            $e->getMessage();
+            return null;
+        }
     }
 
     public function fetchUserTimelineJson($screenName)
@@ -62,24 +67,29 @@ class TwytService
         return $myResult;
     }
 
-    public function fetchListStatusJson($listId,$slug)
+    public function fetchListStatusJson($listId, $slug)
     {
-        //$content = $connection->get("account/verify_credentials"); 
-        $result = $this->connection->get(
-                    self::LIST_STATUSES, 
-                    [
-                        "count" => 100, 
-                        "exclude_replies" => false, 
-                        "list_id" => $listId,
-                        "slug" => $slug,
-                        "owner_screen_name" => "jaafarhabu"
-                    ]
-                );
-        $myResult = json_encode($result, JSON_UNESCAPED_SLASHES);
-        $myFile = $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/jsons/" . $slug . "Timeline.json";
-        $fp = fopen($myFile, 'w');
-        fwrite($fp, $myResult);
-        return $myResult;
+        try {
+            //$content = $connection->get("account/verify_credentials"); 
+            $result = $this->connection->get(
+                self::LIST_STATUSES,
+                [
+                    "count" => 100,
+                    "exclude_replies" => false,
+                    "list_id" => $listId,
+                    "slug" => $slug,
+                    "owner_screen_name" => "jaafarhabu"
+                ]
+            );
+            $myResult = json_encode($result, JSON_UNESCAPED_SLASHES);
+            $myFile = $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/jsons/" . $slug . "Timeline.json";
+            $fp = fopen($myFile, 'w');
+            fwrite($fp, $myResult);
+            return $myResult;
+        } catch (\Throwable $e) {
+            $e->getMessage();
+            return null;
+        }
     }
 
 
@@ -111,7 +121,6 @@ class TwytService
     public function getPremiumTimesTimelineJsonPath(): string
     {
         return $_SERVER['DOCUMENT_ROOT'] . $this->premiumTimesJsonFile;
-
     }
 
     public function getFlutterJsonPath(): string
@@ -148,5 +157,4 @@ class TwytService
     {
         return $_SERVER['DOCUMENT_ROOT'] . $this->technologyJsonFile;
     }
-    
 }

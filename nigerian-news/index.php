@@ -8,7 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/services/twytService.php';
 $connection = new Connection;
 $twytService = new TwytService();
 $twytView = new TwytView($connection);
-$twytService->fetchListStatusJson(203356054,'nigerian-news');
+if($twytService->fetchListStatusJson(203356054,'nigerian-news')!=null)$twytService->fetchListStatusJson(203356054,'nigerian-news');
 echo $twytView->view($twytService->getNigerianNewsJsonPath());
 ?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/includes/footer.inc.php';?>

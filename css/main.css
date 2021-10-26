@@ -154,6 +154,12 @@ p {
 @media screen and (max-width: 600px) {
     .main-content-wrapper{
         width: 95%;
+        
     }
-
+    .tywt-content{
+        overflow: scroll;
+    }
+    .tywyt-user{
+        overflow: scroll;
+    }
 }

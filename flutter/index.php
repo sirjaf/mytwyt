@@ -8,7 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/services/twytService.php';
 $connection = new Connection;
 $twytService = new TwytService();
 $twytView = new TwytView($connection);
-$twytService->fetchListStatusJson(1275198258265174018,'flutter');
+if ($twytService->fetchListStatusJson(1275198258265174018,'flutter')!=null)$twytService->fetchListStatusJson(1275198258265174018,'flutter');
 echo $twytView->view($twytService->getFlutterJsonPath());
 ?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/includes/footer.inc.php';?>
