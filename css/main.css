@@ -50,6 +50,20 @@ ul>li{
     
 }
 
+.active{
+    list-style: none;
+    background: white;
+    color: var(--primary-color);
+    border-radius: 5px;
+    outline-style: solid;
+    outline-width: 1px;
+    /* outline-color: black; */
+}
+
+.active a{
+    color: var(--primary-color);
+}
+
 ul>li:hover{
     list-style: none;
     /* color: var(--primary-color); */

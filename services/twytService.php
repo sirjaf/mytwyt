@@ -51,7 +51,7 @@ class TwytService
             fwrite($fp, $myResult);
             return $myResult;
         } catch (\Throwable $e) {
-            $e->getMessage();
+            //$e->getMessage();
             return null;
         }
     }
@@ -87,7 +87,7 @@ class TwytService
             fwrite($fp, $myResult);
             return $myResult;
         } catch (\Throwable $e) {
-            $e->getMessage();
+           // $e->getMessage();
             return null;
         }
     }

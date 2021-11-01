@@ -13,7 +13,7 @@
                  <nav>
                     <span>mytwyt</span>
                     <ul>
-                        <li>
+                        <li class='active'>
                             <a href="/mytwyt/index.php">Home|Latest</a>
                         </li>
                         <li>
