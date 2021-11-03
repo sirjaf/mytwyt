@@ -62,21 +62,31 @@ ul>li{
 
 .active a{
     color: var(--primary-color);
+    
 }
 
 ul>li:hover{
     list-style: none;
-    /* color: var(--primary-color); */
     background-color: white;
+    color: var(--primary-color);
     border-radius: 5px;
     outline-style: solid;
     outline-width: 1px;
     outline-color: black;
 }
 
+
+ul>li:hover > a{
+    color:  var(--primary-color);
+}
+
 ul>li>a{
    text-decoration: none;
    color: white;
+   
+   
+
+   
    /* color: var(--primary-color);
    text-decoration-line: none;
    text-decoration-style: none; */
@@ -86,7 +96,7 @@ ul>li>a{
 ul>li>a:hover{
     text-decoration: none;
     color: var(--primary-color);
-    /* background-color: white; */
+    background-color: white;
     /* color: var(--primary-color);
     text-decoration-line: none;
     text-decoration-style: none; */

@@ -54,6 +54,7 @@ class TwytView
 
     public function view($jsonPath)
     {
+        
         try {
             $twytList = $this->getTwytList($jsonPath);
             $viewString = "";

@@ -1,3 +1,13 @@
+<?php $activeArray = array(
+    "home"=>"",
+    "nigerian-news"=>"",
+    "web-dev"=>"",
+    "flutter"=>"",
+    "technology"=>"",
+    "android-news"=>"",
+    "football"=>"class='active'",
+    "favorites"=>""
+);?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/includes/header.inc.php';?>
 <?php 
 date_default_timezone_set("Africa/Lagos");

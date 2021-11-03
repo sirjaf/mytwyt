@@ -44,7 +44,7 @@ class TwytService
     {
         try {
             $result = $this->connection->get(self::HOME_TIMELINE, ["count" => 100, "exclude_replies" => false]);
-            echo $result;
+            //echo $result;
             $myResult = json_encode($result, JSON_UNESCAPED_SLASHES);
             $myFile = $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/jsons/homeTimeline.json";
             $fp = fopen($myFile, 'w');
