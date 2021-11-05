@@ -42,7 +42,15 @@ class TwytView
                         <br><br>
                         <div class='tywyt-user'>
                             <p>Posted by: " . $item->getTwytUserScreenName() . "<span>@" . $item->getTwytCreatedAt() . "</span></p>
-                            <button type='button' disabled>Add to Favorite</button>
+                            <button type=button onclick=\"addToFavorite(
+                                '{$item->getTwytId()}',
+                                '{$item->getTwytText()}',
+                                '{$item->getTwytUserScreenName()}',
+                                '{$link}',
+                                '{$item->getTwytCreatedAt()}',
+                                '{$item->getTwytProfileImage()}')\">
+                            Add to Favorite
+                        </button>
                         </div>
                     </div>";
             }
@@ -73,7 +81,15 @@ class TwytView
                             <br><br>
                             <div class='tywyt-user'>
                                 <p>Posted by: " . $item->getTwytUserScreenName() . "<span>@" . $item->getTwytCreatedAt() . "</span></p>
-                                <button type='button' disabled>Add to Favorite</button>
+                                <button type=button onclick=\"addToFavorite(
+                                        '{$item->getTwytId()}',
+                                        '{$item->getTwytText()}',
+                                        '{$item->getTwytUserScreenName()}',
+                                        '{$link}',
+                                        '{$item->getTwytCreatedAt()}',
+                                        '{$item->getTwytProfileImage()}')\">
+                                    Add to Favorite
+                                </button>
                             </div>
         
                         </div>";
