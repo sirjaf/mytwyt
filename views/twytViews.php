@@ -31,7 +31,7 @@ class TwytView
                 $link = $item->getTwytUserUrl();
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
                 $viewString = $viewString . "
-                    <div class='tywt-wrapper'>
+                    <div class='tywt-wrapper' id='{$item->getTwytId()}'>
                         <div class='tywt-content'>
                             <img src='" . $item->getTwytProfileImage() . "' height='100' width='100'>
                             <p>" . $item->getTwytText() . "</p>
@@ -62,7 +62,7 @@ class TwytView
                 $link = $item->getTwytUserUrl();
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
                 $viewString = $viewString . "
-                        <div class='tywt-wrapper'>
+                        <div class='tywt-wrapper' id='{$item->getTwytId()}'>
                             <div class='tywt-content'>
                                 <img src='" . $item->getTwytProfileImage() . "' height='100' width='100'>
                                 <p>" . $item->getTwytText() . "</p>

@@ -28,9 +28,6 @@
                         <li <?php echo $activeArray['technology'];?>>
                             <a href="/mytwyt/technology/index.php">Technology</a>
                         </li>
-                        <li <?php echo $activeArray['android-news'];?>>
-                            <a href="/mytwyt/android-news/index.php">Android News</a>
-                        </li>
                         <li <?php echo $activeArray['football'];?>>
                             <a href="/mytwyt/football/index.php">Football</a>
                         </li>
