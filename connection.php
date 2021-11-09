@@ -3,7 +3,7 @@
 
 class Connection{
     // const BASE_URL = "https://v1.nocodeapi.com/sirjaf1980/twitter/miAMXflKOGlNFBaI";
-    const HOST = "127.0.0.1";
+    const HOST = "localhost";
     const USER = "jafsoftc_mytwyt";
     const PASSWORD = "Sir982172Habu";
     const DB_NAME = "jafsoft_db";
