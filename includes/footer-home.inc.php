@@ -2,6 +2,6 @@
                   
                   </div>
               </main>
-              <script src='/mytwyt/js/twyt.js'></script>
+              <script src='/js/twyt.js'></script>
           </body>
       </html>

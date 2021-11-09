@@ -17,7 +17,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/twytService.php';
 $connection = new Connection;
 $twytService = new TwytService();
 $twytView = new TwytView($connection);
-if ($twytService->fetchHomeTimelineJson()!==null)$twytService->fetchHomeTimelineJson();
+if ($twytService->createHomeTimelineJson()!==null)$twytService->createHomeTimelineJson();
 echo $twytView->homeTimelimeView();
 ?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/includes/footer.inc.php';?>

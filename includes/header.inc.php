@@ -32,7 +32,7 @@
                             <a href="/mytwyt/football/index.php">Football</a>
                         </li>
                         <li <?php echo $activeArray['favorites'];?>>
-                            Favorites
+                        <a href="/mytwyt/favorites/index.php">Favorites</a>
                         </li>
                     </ul>
                  </nav>

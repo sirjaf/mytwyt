@@ -18,8 +18,8 @@ try {
     $connection = new Connection;
     $twytService = new TwytService();
     $twytView = new TwytView($connection);
-    if ($twytService->fetchListStatusJson(203356824,'technology')!=null)$twytService->fetchListStatusJson(203356824,'technology');
-    echo $twytView->view($twytService->getTechnologyJsonPath());
+    if ($twytService->createListStatusJson(203356824,'technology')!=null)$twytService->createListStatusJson(203356824,'technology');
+    echo $twytView->view($twytService->getTechnologyJsonPath(),false);
 } catch (\Throwable $e) {
     echo "Sorry";
 }

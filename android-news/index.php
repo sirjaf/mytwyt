@@ -18,7 +18,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/services/twytService.php';
 $connection = new Connection;
 $twytService = new TwytService();
 $twytView = new TwytView($connection);
-if ($twytService->fetchListStatusJson(203355522,'my-android-list')!==null)$twytService->fetchListStatusJson(203355522,'my-android-list');
-echo $twytView->view($twytService->getMyAndroidListJsonPath());
+if ($twytService->createListStatusJson(203355522,'my-android-list')!==null)$twytService->createListStatusJson(203355522,'my-android-list');
+echo $twytView->view($twytService->getMyAndroidListJsonPath(),false);
 ?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/includes/footer.inc.php';?>

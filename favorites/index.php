@@ -2,11 +2,11 @@
     "home"=>"",
     "nigerian-news"=>"",
     "web-dev"=>"",
-    "flutter"=>"class='active'",
+    "flutter"=>"",
     "technology"=>"",
     "android-news"=>"",
     "football"=>"",
-    "favorites"=>""
+    "favorites"=>"class='active'"
 );?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/includes/header.inc.php';?>
 <?php 
@@ -14,11 +14,13 @@ date_default_timezone_set("Africa/Lagos");
 require_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/connection.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/views/twytViews.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/services/twytService.php';
+//require_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/controllers/twytControllers.php';
 
 $connection = new Connection;
 $twytService = new TwytService();
 $twytView = new TwytView($connection);
-if ($twytService->createListStatusJson(1275198258265174018,'flutter')!=null)$twytService->createListStatusJson(1275198258265174018,'flutter');
-echo $twytView->view($twytService->getFlutterJsonPath(),false);
+//if ($twytService->createFavoritesJson()!==null)$twytService->createFavoritesJson();
+$twytService->createFavoritesJson();
+echo $twytView->view($twytService->getFavoritesJsonPath(),true);
 ?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/includes/footer.inc.php';?>

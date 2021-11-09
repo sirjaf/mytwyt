@@ -1,0 +1,46 @@
+
+function addToFavorite(twytId,twytText,twytUserScreenName,twytUrl,twytCreatedAt,twytProfileImage){
+    var btnAddedToFavorite = document.getElementById(`btn-${twytId}`);
+    
+    if (btnAddedToFavorite.innerHTML == "Add to Favorite"){
+
+        fetch('/mytwyt/favorites/addFavorite.php',
+        {
+            method: 'POST',
+            headers: {
+                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                'Accept':       'application/json'
+            },
+            credentials: 'include',
+            body: 'twytId='+twytId+'&twytText='+twytText+'&twytUserScreenName='+twytUserScreenName+'&twytUrl='+twytUrl+'&twytCreatedAt='+twytCreatedAt+'&twytProfileImage='+twytProfileImage
+        }
+        ).then((res) => res.json())
+        .then((data) => {
+            if(data.added){
+                //btnAddedToFavorite.innerText = "Add to Favorite";
+                btnAddedToFavorite.setAttribute("disabled","disabled");
+            }
+        })
+        .catch((error) => console.log(error));
+
+    }else{
+        fetch('/mytwyt/favorites/deleteFavorite.php',
+            {
+                method: 'POST',
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                    'Accept':       'application/json'
+                },
+                credentials: 'include',
+                body: 'twytId='+twytId
+            }
+        ).then((res) => res.json())
+         .then((data) => {
+            if(data.removed){
+                window.location.reload(true);
+            }
+        }).catch((error) => console.log(error)); 
+    }
+   
+    
+}

@@ -18,7 +18,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/services/twytService.php';
 $connection = new Connection;
 $twytService = new TwytService();
 $twytView = new TwytView($connection);
-if ($twytService->fetchListStatusJson(203356338,'football')!=null)$twytService->fetchListStatusJson(203356338,'football');
-echo $twytView->view($twytService->getFootballJsonPath());
+if ($twytService->createListStatusJson(203356338,'football')!=null)$twytService->createListStatusJson(203356338,'football');
+echo $twytView->view($twytService->getFootballJsonPath(),false);
 ?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/includes/footer.inc.php';?>
