@@ -90,7 +90,7 @@ class TwytService
             fwrite($fp, $myResult);
             return $myResult;
         } catch (\Throwable $e) {
-           // $e->getMessage();
+            $e->getMessage();
             return null;
         }
     }
@@ -172,5 +172,28 @@ class TwytService
     public function getTechnologyJsonPath(): string
     {
         return $_SERVER['DOCUMENT_ROOT'] . $this->technologyJsonFile;
+    }
+
+    public function fetchTwytImages($jsonFile){
+        $response = file_get_contents($jsonFile);
+        $jsonToAssocArray = json_decode($response,true);
+        foreach ($jsonToAssocArray as $item) {
+           $this->fetchImage($item['user']['id'],$item['user']['profile_image_url_https']);
+        }
+
+    }
+
+    private function fetchImage($twyUsertId,$userProfileImageUrl){
+        
+        $uri = $userProfileImageUrl;
+        $reqPrefs['http']['method'] = 'GET';
+        // $reqPrefs['http']['header'] = 'X-Auth-Token: 352e6612f90546368c8e81a8eb633c35';
+        $myImageFile = $_SERVER['DOCUMENT_ROOT']."/mytwyt/images/".$twyUsertId.".jpg";
+        
+        $stream_context = stream_context_create($reqPrefs);
+        $response = file_get_contents($uri, false, $stream_context);
+        $fp = fopen($myImageFile, 'w');
+        fwrite($fp, $response);
+
     }
 }

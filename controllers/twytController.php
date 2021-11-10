@@ -13,7 +13,6 @@ class TwytController{
             $stmt =$this->pdo->prepare($sql);
             $stmt->execute();
             $favoritesList = $stmt->fetchAll();
-            //var_dump($favoritesList);
             return json_encode($favoritesList);
         } catch (\Throwable $e) {
             echo $e->getMessage();
@@ -30,10 +29,8 @@ class TwytController{
             $stmt =$this->pdo->prepare($sql);
             $stmt->execute();
             $favoritesList = $stmt->fetchAll();
-            // echo count($favoritesList);
             return $favoritesList;
             
-           
         } catch (\Throwable $e) {
             echo $e->getMessage();
             return null;
@@ -151,4 +148,6 @@ class TwytController{
         }
         return $listOfTwytObjs;
     }
+
+    
 }

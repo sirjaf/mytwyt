@@ -6,7 +6,7 @@ class Connection{
     const HOST = "localhost";
     const USER = "jafsoftc_mytwytUser";
     const PASSWORD = "Sir982172Habu";
-    const DB_NAME = "jafsoft_db";
+    const DB_NAME = "jafsoftc_db";
     
 
     public static function getConnection(){

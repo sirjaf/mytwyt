@@ -136,6 +136,7 @@ p {
     display: flex;
     flex-direction: row;
     align-items: stretch;
+    padding: 0px 5px;
 }
 .tywyt-user {
     display: flex;
@@ -171,7 +172,7 @@ p {
 }
 
 .twyt-url > span{
-    padding-right: 10px;
+    padding: 0px 10px
     
 }
 
