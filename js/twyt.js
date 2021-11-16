@@ -1,4 +1,17 @@
+var isHidden = true;
+function hideShowNav() {
+    //var headerSpan = document.getElementById('span-header');
+    var headerNav = document.getElementById('nav-header');
+    var screenSize =  window.screen.width;
 
+    if (isHidden && (screenSize <= 600)) {
+        headerNav.classList.add('hide');
+        isHidden = false;
+    }else{
+        headerNav.classList.remove('hide');
+        isHidden = true;
+    }
+}
 function addToFavorite(twytId,twytText,twytUserScreenName,twytUrl,twytCreatedAt,twytProfileImage){
     var btnAddedToFavorite = document.getElementById(`btn-${twytId}`);
     

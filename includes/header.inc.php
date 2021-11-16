@@ -13,8 +13,8 @@
                 <div class='main-content-wrapper'>
                     <div class="header">
                        
-                        <span>mytwyt</span>
-                        <nav>
+                        <span id="span-header" onclick="hideShowNav()">mytwyt</span>
+                        <nav id="nav-header">
                             
                             <ul>
                                 <li <?php echo $activeArray['home'];?>>

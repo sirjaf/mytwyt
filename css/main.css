@@ -31,21 +31,12 @@ body {
     margin-left: 10px;
     border: 1px solid black;
     border-radius: 5px;        
-    /* background-image:url("/mytwyt/images/favicon.ico");
-    background-repeat: no-repeat;
-    background-position: right top; */
+
 }
 
-/* nav>span{
-    color:var(--primary-color);
-    font-size: 2.0rem;
-    background-color: white;
-    padding: 5px;
-    margin-left: 10px;
-    border: 1px solid black;
-    border-radius: 5px;
-} */
-
+nav{
+    display: flex;
+}
 
 ul{
     display: flex;
@@ -200,10 +191,16 @@ p {
     height: 50px;
 }
 
+.hide{
+    display: none;
+    transition: display 5s;
+}
+
 @media screen and (max-width: 600px) {
     .header{
         display: flex;
-        justify-content: flex-end;
+        flex-direction: column;
+        justify-content: center;
         width: auto;
         height: auto;
         position: sticky;
@@ -212,9 +209,12 @@ p {
 
     }
 
-
     nav{
-        display: none;
+        display: flex;
+    }
+    nav > ul{
+        display: flex;
+        flex-direction: column;
     }
 
     .header:hover nav{
