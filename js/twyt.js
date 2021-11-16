@@ -3,6 +3,7 @@ function hideShowNav() {
     //var headerSpan = document.getElementById('span-header');
     var headerNav = document.getElementById('nav-header');
     var screenSize =  window.screen.width;
+    alert(screenSize);
 
     if (isHidden && (screenSize <= 600)) {
         headerNav.classList.add('hide');
