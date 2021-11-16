@@ -203,6 +203,7 @@ p {
         justify-content: center;
         width: auto;
         height: auto;
+        position: -webkit-sticky;
         position: sticky;
         background-color: white;
         background-color: var(--primary-color);
@@ -217,9 +218,9 @@ p {
         flex-direction: column;
     }
 
-    .header:hover nav{
+    /* .header:hover nav{
         display: block;
-    }
+    } */
 
     .main-content-wrapper{
         width: 100%;
