@@ -17,6 +17,7 @@ function addToFavorite(twytId,twytText,twytUserScreenName,twytUrl,twytCreatedAt,
     
     if (btnAddedToFavorite.innerHTML == "Add to Favorite"){
         btnAddedToFavorite.setAttribute("disabled","disabled");
+        
         fetch('/mytwyt/favorites/addFavorite.php',
         {
             method: 'POST',
@@ -32,8 +33,10 @@ function addToFavorite(twytId,twytText,twytUserScreenName,twytUrl,twytCreatedAt,
             if(data.added){
                 //btnAddedToFavorite.innerText = "Add to Favorite";
                 btnAddedToFavorite.setAttribute("disabled","disabled");
+                
             }else{
                 btnAddedToFavorite.setAttribute("disabled","");
+               
             }
         })
         .catch((error) => console.log(error));
