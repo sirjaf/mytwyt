@@ -46,7 +46,7 @@ class TwytService
     public function createHomeTimelineJson()
     {
         try {
-            $result = $this->connection->get(self::HOME_TIMELINE, ["count" => 100, "exclude_replies" => false]);
+            $result = $this->connection->get(self::HOME_TIMELINE, ["count" => 100, "exclude_replies" => false,"tweet_mode"=>"extended"]);
             //echo $result;
             $myResult = json_encode($result, JSON_UNESCAPED_SLASHES);
             $myFile = $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/jsons/homeTimeline.json";
@@ -62,7 +62,7 @@ class TwytService
     public function createUserTimelineJson($screenName)
     {
         //$content = $connection->get("account/verify_credentials"); 
-        $result = $this->connection->get(self::USER_TIMELINE, ["count" => 50, "exclude_replies" => false, "screen_name" => "{$screenName}"]);
+        $result = $this->connection->get(self::USER_TIMELINE, ["count" => 50, "exclude_replies" => false, "screen_name" => "{$screenName}","tweet_mode"=>"extended"]);
         $myResult = json_encode($result, JSON_UNESCAPED_SLASHES);
         $myFile = $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/jsons/" . $screenName . "Timeline.json";
         $fp = fopen($myFile, 'w');
@@ -81,7 +81,8 @@ class TwytService
                     "exclude_replies" => false,
                     "list_id" => $listId,
                     "slug" => $slug,
-                    "owner_screen_name" => "jaafarhabu"
+                    "owner_screen_name" => "jaafarhabu",
+                    "tweet_mode"=>"extended"
                 ]
             );
             $myResult = json_encode($result, JSON_UNESCAPED_SLASHES);

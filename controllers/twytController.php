@@ -117,7 +117,7 @@ class TwytController{
             $twytDate = date("g:i a, F j, Y ",$myDate);
             $twytObj = new TwytModel(
                 $item['id'],
-                $item['text'],
+                $item['full_text'],
                 $item['user']['screen_name'],
                 $item['entities']['urls'][0]['expanded_url']??'',
                 $twytDate,
