@@ -10,6 +10,7 @@ class TwytView
     private $twytController;
     private $disabled = "";
     private $btnText;
+
     public function __construct($twytConnection)
     {
         $this->twytConnection = $twytConnection;
@@ -37,12 +38,15 @@ class TwytView
             $this->btnText = "Add to Favorite";
             $viewString = "";
             foreach ($homeTwytList as $item) {
-                $mySqliConnection = Connection::getMsqliConnection();
+                $mySqliConnection = $this->twytConnection->getMsqliConnection();
                 $link = $item->getTwytUserUrl();
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
                 $twytId = mysqli_real_escape_string($mySqliConnection,$item->getTwytId());
                 $twytText = mysqli_real_escape_string($mySqliConnection,$item->getTwytText());
+                // $twytId = $item->getTwytId();
+                // $twytText = $item->getTwytText();
+
                 $twytTextSanitized = htmlspecialchars($twytText);
 
                 if ($this->twytController->isTwytInDb($twytId)==true){
@@ -91,7 +95,7 @@ class TwytView
             $viewString = "";
             // $disabled = "";
             foreach ($twytList as $item) {
-                $mySqliConnection = Connection::getMsqliConnection();
+                $mySqliConnection = $this->twytConnection->getMsqliConnection();
                 $link = $item->getTwytUserUrl();
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
                

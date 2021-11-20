@@ -9,11 +9,6 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 class TwytService
 {
     //private $myURL ='https://api.twitter.com/1.1/statuses/home_timeline.json';
-    const NOCODEAPIHOMETIMELINE = "https://v1.nocodeapi.com/sirjaf1980/twitter/miAMXflKOGlNFBaI?type=home_timeline&api_key=tPITQSNuQxywUlCNY&count=100";
-    const NIGERIANNEWS = "https://v1.nocodeapi.com/sirjaf1980/twitter/miAMXflKOGlNFBaI/listStatuses?slug=nigerian-news&owner_screen_name=jaafarhabu&api_key=tPITQSNuQxywUlCNY&count=100";
-    const WEBDEV = "https://v1.nocodeapi.com/sirjaf1980/twitter/miAMXflKOGlNFBaI/listStatuses?slug=web-dev&owner_screen_name=jaafarhabu&api_key=tPITQSNuQxywUlCNY&count=100";
-    const FLUTTER = "https://v1.nocodeapi.com/sirjaf1980/twitter/miAMXflKOGlNFBaI/listStatuses?slug=flutter&owner_screen_name=jaafarhabu&api_key=tPITQSNuQxywUlCNY&count=100";
-    const TECHNOLOGY  = "https://v1.nocodeapi.com/sirjaf1980/twitter/miAMXflKOGlNFBaI/listStatuses?slug=technology&owner_screen_name=jaafarhabu&api_key=tPITQSNuQxywUlCNY&count=100";
 
     const USER_TIMELINE = "statuses/user_timeline";
     const HOME_TIMELINE = "statuses/home_timeline";
@@ -35,12 +30,21 @@ class TwytService
 
     public function __construct()
     {
+        \Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']."/mytwyt")->load();
+        // $this->connection = new TwitterOAuth(
+        //     'Dsmr86yGxNH3ujPIkQl4cpcKx',
+        //     'Y0D3gmsytruhyvbJUk5MxOQeH6V6TyEhZ8WICaSTEM4m39HXgn',
+        //     '391616463-rCR7R6tj9EQ9VJtqdbCYqPizFZpjN4d1YY8pdUGn',
+        //     'rd95Vfu0x2RQvamQPbHBCU530Rc5PsshS26JMffco1lC0'
         $this->connection = new TwitterOAuth(
-            'Dsmr86yGxNH3ujPIkQl4cpcKx',
-            'Y0D3gmsytruhyvbJUk5MxOQeH6V6TyEhZ8WICaSTEM4m39HXgn',
-            '391616463-rCR7R6tj9EQ9VJtqdbCYqPizFZpjN4d1YY8pdUGn',
-            'rd95Vfu0x2RQvamQPbHBCU530Rc5PsshS26JMffco1lC0'
+            $_ENV['TWITTER_API_KEY'],
+            $_ENV['TWITTER_API_SECRET_KEY'],
+            $_ENV['TWITTER_ACCESS_TOKEN'],
+            $_ENV['TWITTER_ACCESS_TOKEN_SECRET']
         );
+        // );
+        //\Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']."/mytwyt")->load();
+        //var_dump($_ENV);
     }
 
     public function createHomeTimelineJson()

@@ -1,37 +1,43 @@
 <?php
 //declare(strict_types=1);
-
+require $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/vendor/autoload.php";
 class Connection{
-    // const BASE_URL = "https://v1.nocodeapi.com/sirjaf1980/twitter/miAMXflKOGlNFBaI";
-    const HOST = "localhost";
-    const USER = "jafsoftc_mytwytUser";
-    const PASSWORD = "Sir982172Habu";
-    const DB_NAME = "jafsoftc_db";
+    
+    private $host;
+    private $user;
+    private $password;
+    private $dbName;
     
 
-    public static function getConnection(){
+    public function __construct(){
+        \Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']."/mytwyt")->load();
+        $this->host = $_ENV['HOST'];
+        $this->user = $_ENV['USER'];
+        $this->password = $_ENV['PASSWORD'];
+        $this->dbName = $_ENV['DB_NAME'];
+    }
+
+    public function getConnection(){
        try {
-        $connectionString ="mysql:host=".self::HOST.";dbname=".self::DB_NAME;
-        $pdo = new PDO($connectionString,self::USER,self::PASSWORD);
-        // $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
+        $connectionString ="mysql:host=".$this->host.";dbname=".$this->dbName;
+        $pdo = new PDO($connectionString,$this->user,$this->password);
         return $pdo;
 
        } catch (\Throwable $e) {
-        //var_dump($pdo);
            echo $e->getMessage();
        }
         
     }
     
-
-    public static function getMsqliConnection() {
+    public function getMsqliConnection() {
         try {
-            $conn = mysqli_connect(self::HOST, self::USER, self::PASSWORD, self::DB_NAME);
+            $conn = mysqli_connect($this->host, $this->user, $this->password, $this->dbName);
+            //var_dump($this->dbName);
             return $conn;
         } catch (\Throwable $th) {
             $th->getMessage();
         }
-        $conn = mysqli_connect(self::HOST, self::USER, self::PASSWORD, self::DB_NAME);
+        // $conn = mysqli_connect($this->host, $this->user, $this->password, $this->dbName);
     }
 
     public static function closeConnection($pdo){
