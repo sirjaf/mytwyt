@@ -86,22 +86,17 @@ function addToFavorite(twytId, twytText, twytUserScreenName, twytUrl, twytCreate
                 }
             }).catch((error) => console.log(error));
     }
-
-
 }
 
-function shareTwyt(twytId,twytText, twytUserScreenName, twytUrl, twytCreatedAt, twytProfileImage){
+function shareTwyt(twytId,twytText, twytUserScreenName, twytUrl, twytCreatedAt){
     var btnShareTwyt = document.getElementById(`btn-share${twytId}`);
-
     if (btnShareTwyt!=null){
        
         if(navigator.share){
             navigator.share({
-                title: twytUserScreenName,
+                title: `Posted by ${twytUserScreenName} @${twytCreatedAt}`,
                 text: twytText,
-                url: twytUrl,
-                profileImage: twytProfileImage,
-                twytCreatedAt: twytCreatedAt
+                url: twytUrl
         }).then((console.log('Successful share'))).catch((console.error));
         
      }else{

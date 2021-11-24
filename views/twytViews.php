@@ -79,8 +79,7 @@ class TwytView
                                     '$twytTextSanitized',
                                     '{$item->getTwytUserScreenName()}',
                                     '{$link}',
-                                    '{$item->getTwytCreatedAt()}',
-                                    '{$item->getTwytProfileImage()}')\">
+                                    '{$item->getTwytCreatedAt()}')\">
                                     Share
                                 </button>
                                 <button type='submit' id='btn-{$twytId}' {$this->disabled} onclick=\"addToFavorite(
@@ -148,8 +147,7 @@ class TwytView
                                     '$twytTextSanitized',
                                     '{$item->getTwytUserScreenName()}',
                                     '{$link}',
-                                    '{$item->getTwytCreatedAt()}',
-                                    '{$item->getTwytProfileImage()}')\">
+                                    '{$item->getTwytCreatedAt()}')\">
                                     Share
                                 </button>
                                 <button type='submit' id='btn-{$twytId}' {$this->disabled} onclick=\"addToFavorite(
@@ -219,8 +217,7 @@ class TwytView
                                     '$twytTextSanitized',
                                     '{$item->getTwytUserScreenName()}',
                                     '{$link}',
-                                    '{$item->getTwytCreatedAt()}',
-                                    '{$item->getTwytProfileImage()}')\">
+                                    '{$item->getTwytCreatedAt()}')\">
                                     Share
                                 </button>
                                 <button type='submit' id='btn-{$twytId}' {$this->disabled} onclick=\"addToFavorite(
