@@ -71,15 +71,29 @@ class TwytView
                                 <a href='/mytwyt/search/index.php?screenname={$item->getTwytUserScreenName()}'>{$item->getTwytUserScreenName()} </a>
                                 <span>@" . $item->getTwytCreatedAt() . "</span>
                             </p>
-                            <button type='submit' id='btn-{$twytId}' {$this->disabled} onclick=\"addToFavorite(
-                                '$twytId',
-                                '$twytTextSanitized',
-                                '{$item->getTwytUserScreenName()}',
-                                '{$link}',
-                                '{$item->getTwytCreatedAt()}',
-                                '{$item->getTwytProfileImage()}')\">" .
-                                $this->btnText .
-                            "</button>
+
+                            <div class='tywyt-user-actions'>
+                               
+                                <button type='submit' id='btn-share{$twytId}' onclick=\"shareTwyt(
+                                    '$twytId',
+                                    '$twytTextSanitized',
+                                    '{$item->getTwytUserScreenName()}',
+                                    '{$link}',
+                                    '{$item->getTwytCreatedAt()}',
+                                    '{$item->getTwytProfileImage()}')\">
+                                    Share
+                                </button>
+                                <button type='submit' id='btn-{$twytId}' {$this->disabled} onclick=\"addToFavorite(
+                                    '$twytId',
+                                    '$twytTextSanitized',
+                                    '{$item->getTwytUserScreenName()}',
+                                    '{$link}',
+                                    '{$item->getTwytCreatedAt()}',
+                                    '{$item->getTwytProfileImage()}')\">" .
+                    $this->btnText .
+                    "</button>
+                                
+                            </div>    
                         </div>
                     </div>";
             }
@@ -127,15 +141,28 @@ class TwytView
                                     <a href='/mytwyt/search/index.php?screenname={$item->getTwytUserScreenName()}'>{$item->getTwytUserScreenName()} </a>
                                     <span>@" . $item->getTwytCreatedAt() . "</span>
                                 </p>
-                                <button type=button  id='btn-{$item->getTwytId()}' {$this->disabled} onclick=\"addToFavorite(
-                                        '$twytId',
-                                        '$twytTextSanitized',
-                                        '{$item->getTwytUserScreenName()}',
-                                        '{$link}',
-                                        '{$item->getTwytCreatedAt()}',
-                                        '{$item->getTwytProfileImage()}')\">" .
+                                <div class='tywyt-user-actions'>
+                               
+                                <button type='submit' id='btn-share{$twytId}' onclick=\"shareTwyt(
+                                    '$twytId',
+                                    '$twytTextSanitized',
+                                    '{$item->getTwytUserScreenName()}',
+                                    '{$link}',
+                                    '{$item->getTwytCreatedAt()}',
+                                    '{$item->getTwytProfileImage()}')\">
+                                    Share
+                                </button>
+                                <button type='submit' id='btn-{$twytId}' {$this->disabled} onclick=\"addToFavorite(
+                                    '$twytId',
+                                    '$twytTextSanitized',
+                                    '{$item->getTwytUserScreenName()}',
+                                    '{$link}',
+                                    '{$item->getTwytCreatedAt()}',
+                                    '{$item->getTwytProfileImage()}')\">" .
                     $this->btnText .
                     "</button>
+                                
+                            </div>    
                             </div>
         
                         </div>";
@@ -151,11 +178,12 @@ class TwytView
         try {
 
             //$twytService = new TwytService();
-            $userTimelineTwyts = $this->twytController->getUserTimelineTwyts($screenName);
+            $mySqliConnection = $this->twytConnection->getMsqliConnection();
+            $userTimelineTwyts = $this->twytController->getUserTimelineTwyts(mysqli_real_escape_string($mySqliConnection,$screenName));
             $this->btnText = "Add to Favorite";
             $viewString = "";
             foreach ($userTimelineTwyts as $item) {
-                $mySqliConnection = $this->twytConnection->getMsqliConnection();
+                // $mySqliConnection = $this->twytConnection->getMsqliConnection();
                 $link = $item->getTwytUserUrl();
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
@@ -184,15 +212,28 @@ class TwytView
                         <br><br>
                         <div class='tywyt-user'>
                             <p>Posted by: " . $item->getTwytUserScreenName() . "<span>@" . $item->getTwytCreatedAt() . "</span></p>
-                            <button type='submit' id='btn-{$twytId}' {$this->disabled} onclick=\"addToFavorite(
-                                '$twytId',
-                                '$twytTextSanitized',
-                                '{$item->getTwytUserScreenName()}',
-                                '{$link}',
-                                '{$item->getTwytCreatedAt()}',
-                                '{$item->getTwytProfileImage()}')\">" .
+                            <div class='tywyt-user-actions'>
+                               
+                                <button type='submit' id='btn-share{$twytId}' onclick=\"shareTwyt(
+                                    '$twytId',
+                                    '$twytTextSanitized',
+                                    '{$item->getTwytUserScreenName()}',
+                                    '{$link}',
+                                    '{$item->getTwytCreatedAt()}',
+                                    '{$item->getTwytProfileImage()}')\">
+                                    Share
+                                </button>
+                                <button type='submit' id='btn-{$twytId}' {$this->disabled} onclick=\"addToFavorite(
+                                    '$twytId',
+                                    '$twytTextSanitized',
+                                    '{$item->getTwytUserScreenName()}',
+                                    '{$link}',
+                                    '{$item->getTwytCreatedAt()}',
+                                    '{$item->getTwytProfileImage()}')\">" .
                     $this->btnText .
                     "</button>
+                                
+                            </div>    
                         </div>
                     </div>";
             }
