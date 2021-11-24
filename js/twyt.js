@@ -92,9 +92,9 @@ function addToFavorite(twytId, twytText, twytUserScreenName, twytUrl, twytCreate
 
 function shareTwyt(twytId,twytText, twytUserScreenName, twytUrl, twytCreatedAt, twytProfileImage){
     var btnShareTwyt = document.getElementById(`btn-share${twytId}`);
-    alert("entered sharetwyt")
+
     if (btnShareTwyt!=null){
-        alert("entered btnshare not null")
+       
         if(navigator.share){
             navigator.share({
                 title: twytUserScreenName,
