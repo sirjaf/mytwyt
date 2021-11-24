@@ -74,6 +74,12 @@ class TwytService
         return $myResult;
     }
 
+    public function fetUserTimelineTwyts($screenName){
+        $result = $this->connection->get(self::USER_TIMELINE, ["count" => 50, "exclude_replies" => false, "screen_name" => "{$screenName}","tweet_mode"=>"extended"]);
+        $userTimelineTwyts = json_encode($result, JSON_UNESCAPED_SLASHES);
+        return $userTimelineTwyts;
+    }
+
     public function createListStatusJson($listId, $slug)
     {
         try {
@@ -102,12 +108,14 @@ class TwytService
 
     public function createFavoritesJson(){
         $pdoConnection = new Connection;
-        $twytController = new TwytController($pdoConnection->getConnection());
+        $twytController = new TwytController($pdoConnection->getConnection(),null);
         $favoriteList = $twytController->getFavoritesFromDB();
         $myFile = $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/jsons/favorites.json";
         $fp = fopen($myFile, 'w');
         fwrite($fp, $favoriteList);
     }
+
+
 
     public function fetchTwyt($url, $file)
     {

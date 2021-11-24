@@ -6,7 +6,8 @@
     "technology"=>"",
     "android-news"=>"",
     "football"=>"",
-    "favorites"=>"class='active'"
+    "favorites"=>"class='active'",
+    "search" => ""
 );?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/includes/header.inc.php';?>
 <?php 

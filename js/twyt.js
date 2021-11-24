@@ -12,11 +12,34 @@ function hideShowNav() {
         isHidden = true;
     }
 }
+document.getElementById('btnSearch').addEventListener("click",
+    function e(event){
+        event.preventDefault();
+        var searchInput = document.getElementById('txtScreenName').value;
+        var twytListWrapper = document.getElementById('twyt-list-wrapper');
+        fetch('/mytwyt/search/searchProcessor.php',
+        {
+            method: 'POST',
+            headers: {
+                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                'Accept':       'application/json'
+            },
+            credentials: 'include',
+            body: 'screenName='+searchInput
+        }
+        ).then((res) => res.text())
+        .then((data)=>twytListWrapper.innerHTML = data)
+        .catch((error) => console.log(error));
+        
+        }
+    );
+
 function addToFavorite(twytId,twytText,twytUserScreenName,twytUrl,twytCreatedAt,twytProfileImage){
     var btnAddedToFavorite = document.getElementById(`btn-${twytId}`);
     
     if (btnAddedToFavorite.innerHTML == "Add to Favorite"){
-        btnAddedToFavorite.setAttribute("disabled","disabled");
+        //btnAddedToFavorite.setAttribute("disabled","disabled");
+        btnAddedToFavorite.disabled = true;
         
         fetch('/mytwyt/favorites/addFavorite.php',
         {
@@ -32,10 +55,12 @@ function addToFavorite(twytId,twytText,twytUserScreenName,twytUrl,twytCreatedAt,
         .then((data) => {
             if(data.added){
                 //btnAddedToFavorite.innerText = "Add to Favorite";
-                btnAddedToFavorite.setAttribute("disabled","disabled");
+                // btnAddedToFavorite.setAttribute("disabled","disabled");
+                btnAddedToFavorite.disabled = true;
                 
             }else{
-                btnAddedToFavorite.setAttribute("disabled","");
+                btnAddedToFavorite.removeAttribute("disabled");
+                btnAddedToFavorite.disabled = false;
                
             }
         })

@@ -1,9 +1,13 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/models/twytModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/models/twytModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/twytService.php';
 class TwytController{
     private $pdo;
-    public function __construct($pdo){
-        $this->pdo = $pdo;      
+    private $service=null;
+
+    public function __construct($pdo,$service){
+        $this->pdo = $pdo;
+        $this->service = ($service==null)?null:$service;      
     }
     public function getFavoritesFromDB()
     {
@@ -38,6 +42,11 @@ class TwytController{
        
     }
 
+    public function getUserTimelineTwyts($screenName){
+        $userTimelineTwyts = $this->service->fetUserTimelineTwyts($screenName);
+        return $this->createTwytObjects($userTimelineTwyts);
+    }
+
     public function isTwytInDb($twytId) {
         $favoriteTwytList = $this->getFavoritesTwytIds();
         $twytStatus = false;
@@ -50,10 +59,6 @@ class TwytController{
         }
         return $twytStatus;
     }
-
-    // public function fetchFavoriteTwytObjects($jsonFile){
-    //     return $this->fetchTwytObject($jsonFile);
-    // }
 
     public function addFavorite(string $twytId, string $twytText, string $twytUserScreenName,string $twytUserUrl,string $twytCreatedAt,string $twytProfileImage)
     {
@@ -110,22 +115,8 @@ class TwytController{
     public function fetchTwytObjects($jsonFile){
 
         $response = file_get_contents($jsonFile);
-        $jsonToAssocArray = json_decode($response,true);
-        $listOfTwytObjs = array();
-        foreach ($jsonToAssocArray as $item) {
-            $myDate = strtotime("{$item['created_at']}");
-            $twytDate = date("g:i a, F j, Y ",$myDate);
-            $twytObj = new TwytModel(
-                $item['id'],
-                $item['full_text'],
-                $item['user']['screen_name'],
-                $item['entities']['urls'][0]['expanded_url']??'',
-                $twytDate,
-                $item['user']['profile_image_url_https']
-            );
-            array_push($listOfTwytObjs,$twytObj);
-        }
-        return $listOfTwytObjs;
+        return $this->createTwytObjects($response);
+       
     }
 
     public function fetchFavoriteTwytObjects($jsonFile){
@@ -149,5 +140,23 @@ class TwytController{
         return $listOfTwytObjs;
     }
 
-    
+    private function createTwytObjects($json){
+
+        $jsonToAssocArray = json_decode($json,true);
+        $listOfTwytObjs = array();
+        foreach ($jsonToAssocArray as $item) {
+            $myDate = strtotime("{$item['created_at']}");
+            $twytDate = date("g:i a, F j, Y ",$myDate);
+            $twytObj = new TwytModel(
+                $item['id'],
+                $item['full_text'],
+                $item['user']['screen_name'],
+                $item['entities']['urls'][0]['expanded_url']??'',
+                $twytDate,
+                $item['user']['profile_image_url_https']
+            );
+            array_push($listOfTwytObjs,$twytObj);
+        }
+        return $listOfTwytObjs;
+    }
 }
