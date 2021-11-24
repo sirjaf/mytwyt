@@ -14,19 +14,18 @@ class TwytView
     public function __construct($twytConnection)
     {
         $this->twytConnection = $twytConnection;
-        $this->twytController = new TwytController($this->twytConnection->getConnection(),new TwytService());
-        
+        $this->twytController = new TwytController($this->twytConnection->getConnection(), new TwytService());
     }
 
     private function getTwytList($jsonFile, $isFavarite)
     {
-        if ($isFavarite == true){
+        if ($isFavarite == true) {
             $twytList = $this->twytController->fetchFavoriteTwytObjects($jsonFile);
             return $twytList;
-        }else{
+        } else {
             $twytList = $this->twytController->fetchTwytObjects($jsonFile);
             return $twytList;
-        }   
+        }
     }
 
     public function homeTimelimeView()
@@ -34,7 +33,7 @@ class TwytView
         try {
 
             $twytService = new TwytService();
-            $homeTwytList = $this->getTwytList($twytService->getHomeTimelineJsonPath(),false);
+            $homeTwytList = $this->getTwytList($twytService->getHomeTimelineJsonPath(), false);
             $this->btnText = "Add to Favorite";
             $viewString = "<div class='twyt-list-wrapper'>";
             foreach ($homeTwytList as $item) {
@@ -42,20 +41,20 @@ class TwytView
                 $link = $item->getTwytUserUrl();
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
-                $twytId = mysqli_real_escape_string($mySqliConnection,$item->getTwytId());
-                $twytText = mysqli_real_escape_string($mySqliConnection,$item->getTwytText());
+                $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
+                $twytText = mysqli_real_escape_string($mySqliConnection, $item->getTwytText());
                 // $twytId = $item->getTwytId();
                 // $twytText = $item->getTwytText();
 
                 $twytTextSanitized = htmlspecialchars($twytText);
 
-                if ($this->twytController->isTwytInDb($twytId)==true){
-                    $this->disabled ="disabled";
+                if ($this->twytController->isTwytInDb($twytId) == true) {
+                    $this->disabled = "disabled";
                     //$this->btnText = "Add to Favorite";
-                }else{
-                    $this->disabled ="";
+                } else {
+                    $this->disabled = "";
                     //$this->btnText = "Add to Favorite";
-                } 
+                }
 
                 $viewString = $viewString . "
                 
@@ -68,16 +67,19 @@ class TwytView
                         </div>
                         <br><br>
                         <div class='tywyt-user'>
-                            <p>Posted by: " . $item->getTwytUserScreenName() . "<span>@" . $item->getTwytCreatedAt() . "</span></p>
+                            <p>Posted by: 
+                                <a href='/mytwyt/search/index.php?screenname={$item->getTwytUserScreenName()}'>{$item->getTwytUserScreenName()} </a>
+                                <span>@" . $item->getTwytCreatedAt() . "</span>
+                            </p>
                             <button type='submit' id='btn-{$twytId}' {$this->disabled} onclick=\"addToFavorite(
                                 '$twytId',
                                 '$twytTextSanitized',
                                 '{$item->getTwytUserScreenName()}',
                                 '{$link}',
                                 '{$item->getTwytCreatedAt()}',
-                                '{$item->getTwytProfileImage()}')\">".
-                                $this->btnText.
-                        "</button>
+                                '{$item->getTwytProfileImage()}')\">" .
+                                $this->btnText .
+                            "</button>
                         </div>
                     </div>";
             }
@@ -87,29 +89,29 @@ class TwytView
         }
     }
 
-    public function view($jsonPath,$isFavorite)
+    public function view($jsonPath, $isFavorite)
     {
-        
+
         try {
-            $twytList = $this->getTwytList($jsonPath,$isFavorite);
-            $this->btnText = ($isFavorite)?"Remove":"Add to Favorite";
+            $twytList = $this->getTwytList($jsonPath, $isFavorite);
+            $this->btnText = ($isFavorite) ? "Remove" : "Add to Favorite";
             $viewString = "<div class='twyt-list-wrapper'>";
             // $disabled = "";
             foreach ($twytList as $item) {
                 $mySqliConnection = $this->twytConnection->getMsqliConnection();
                 $link = $item->getTwytUserUrl();
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
-               
-                $twytId = mysqli_real_escape_string($mySqliConnection,$item->getTwytId());
-                $twytText = mysqli_real_escape_string($mySqliConnection,$item->getTwytText());
+
+                $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
+                $twytText = mysqli_real_escape_string($mySqliConnection, $item->getTwytText());
                 $twytTextSanitized = htmlspecialchars($twytText);
-                if (($this->twytController->isTwytInDb($twytId)==true) && ($isFavorite==false)){
-                    $this->disabled ="disabled";
+                if (($this->twytController->isTwytInDb($twytId) == true) && ($isFavorite == false)) {
+                    $this->disabled = "disabled";
                     $this->btnText = "Add to Favorite";
-                }else{
-                    $this->disabled ="";
+                } else {
+                    $this->disabled = "";
                     //$this->btnText = "Add to Favorite";
-                } 
+                }
                 $viewString = $viewString . "
                     
                         <div class='tywt-wrapper' id='{$item->getTwytId()}'>
@@ -121,23 +123,26 @@ class TwytView
                             </div>
                             <br><br>
                             <div class='tywyt-user'>
-                                <p>Posted by: " . $item->getTwytUserScreenName() . "<span>@" . $item->getTwytCreatedAt() . "</span></p>
+                                <p>Posted by: 
+                                    <a href='/mytwyt/search/index.php?screenname={$item->getTwytUserScreenName()}'>{$item->getTwytUserScreenName()} </a>
+                                    <span>@" . $item->getTwytCreatedAt() . "</span>
+                                </p>
                                 <button type=button  id='btn-{$item->getTwytId()}' {$this->disabled} onclick=\"addToFavorite(
                                         '$twytId',
                                         '$twytTextSanitized',
                                         '{$item->getTwytUserScreenName()}',
                                         '{$link}',
                                         '{$item->getTwytCreatedAt()}',
-                                        '{$item->getTwytProfileImage()}')\">".
-                                     $this->btnText.
-                                "</button>
+                                        '{$item->getTwytProfileImage()}')\">" .
+                    $this->btnText .
+                    "</button>
                             </div>
         
                         </div>";
             }
             return $viewString;
         } catch (\Throwable $e) {
-            echo "Sorry". $e->getMessage();
+            echo "Sorry" . $e->getMessage();
         }
     }
 
@@ -146,7 +151,7 @@ class TwytView
         try {
 
             //$twytService = new TwytService();
-            $userTimelineTwyts = $this->twytController-> getUserTimelineTwyts($screenName);
+            $userTimelineTwyts = $this->twytController->getUserTimelineTwyts($screenName);
             $this->btnText = "Add to Favorite";
             $viewString = "";
             foreach ($userTimelineTwyts as $item) {
@@ -154,18 +159,18 @@ class TwytView
                 $link = $item->getTwytUserUrl();
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
-                $twytId = mysqli_real_escape_string($mySqliConnection,$item->getTwytId());
-                $twytText = mysqli_real_escape_string($mySqliConnection,$item->getTwytText());
+                $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
+                $twytText = mysqli_real_escape_string($mySqliConnection, $item->getTwytText());
 
                 $twytTextSanitized = htmlspecialchars($twytText);
 
-                if ($this->twytController->isTwytInDb($twytId)==true){
-                    $this->disabled ="disabled";
+                if ($this->twytController->isTwytInDb($twytId) == true) {
+                    $this->disabled = "disabled";
                     //$this->btnText = "Add to Favorite";
-                }else{
-                    $this->disabled ="";
+                } else {
+                    $this->disabled = "";
                     //$this->btnText = "Add to Favorite";
-                } 
+                }
 
                 $viewString = $viewString . "
                 
@@ -185,9 +190,9 @@ class TwytView
                                 '{$item->getTwytUserScreenName()}',
                                 '{$link}',
                                 '{$item->getTwytCreatedAt()}',
-                                '{$item->getTwytProfileImage()}')\">".
-                                $this->btnText.
-                        "</button>
+                                '{$item->getTwytProfileImage()}')\">" .
+                    $this->btnText .
+                    "</button>
                         </div>
                     </div>";
             }

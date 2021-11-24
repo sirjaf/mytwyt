@@ -205,19 +205,31 @@ p {
     color: white;
 }
 
+.tywyt-user > p{
+    padding: 10px 5px;
+}
+
 .tywyt-user > button{
     margin-right: 10px;
     padding: 10px 5px;
     background-color: white;
-    /* color: white; */
-    border: 1px solid black;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
     border-radius: 5px;
     font-weight: bold;
 }
 
 .tywyt-user > button:hover{
     background-color: white;
+    color: black;
+}
+
+.tywyt-user * a {
+    background-color: white;
     color: var(--primary-color);
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .twyt-url{
