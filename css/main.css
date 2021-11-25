@@ -300,6 +300,14 @@ footer{
     transition: display 5s;
 }
 
+progress{
+    display: none;
+    width: 100%;
+    -webkit-transition: width 2s;
+    -o-transition: width 2s;
+    transition: width 2s;
+}
+
 @media screen and (max-width: 600px) {
     .header{
         display: -webkit-box;
@@ -363,10 +371,15 @@ footer{
     }
 
     .tywyt-user-actions{
-        -webkit-box-orient: vertical;
+        -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
-            -ms-flex-direction: column; 
-                flex-direction: column;
+            -ms-flex-direction: row; 
+                flex-direction: row;
+    }
+
+    .tywyt-user-actions > button{
+        width: 50%;
+
     }
 
     footer{

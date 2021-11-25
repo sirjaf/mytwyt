@@ -18,6 +18,8 @@
             <input type='text' name='screenName' id='txtScreenName' value= '{$screenName}' >
             <button type='submit' id='btnSearch'>Search</button>
         </form>
+        <progress value='0' max='100'>
+        </progress>
         <div id='twyt-list-wrapper'>
 
         </div>
