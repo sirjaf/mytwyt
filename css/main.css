@@ -4,8 +4,8 @@
     border: 0px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    --primary-color : green;
-    --secondary-color : blue;
+    --primary-color : #144083;
+    --secondary-color : #388f3d;
 }
 body {
     font-size: 1.0rem;
