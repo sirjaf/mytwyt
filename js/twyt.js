@@ -104,4 +104,29 @@ function shareTwyt(twytId,twytText, twytUserScreenName, twytUrl, twytCreatedAt){
      }
     }
 
+
 }
+
+ function fetchSearchTerm(){
+    
+        var searchInput = document.getElementById('txtScreenName');
+        var twytListWrapper = document.getElementById('twyt-list-wrapper');
+        
+        if(!searchInput) return;
+        if(searchInput.value=="") return;
+        fetch('/mytwyt/search/searchProcessor.php',
+                {
+                    method: 'POST',
+                    headers: {
+                        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                        'Accept': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: 'screenName=' + searchInput.value
+                }
+            ).then((res) => res.text())
+                .then((data) => twytListWrapper.innerHTML = data)
+                .catch((error) => console.log(error));
+    }
+
+    window.onload = fetchSearchTerm();
