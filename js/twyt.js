@@ -2,7 +2,6 @@ var isHidden = true;
 function hideShowNav() {
     var headerNav = document.getElementById('nav-header');
     var screenSize = window.screen.width;
-    // alert(screenSize);
 
     if (isHidden && (screenSize <= 600)) {
         headerNav.classList.add('hide');
@@ -69,6 +68,7 @@ function addToFavorite(twytId, twytText, twytUserScreenName, twytUrl, twytCreate
             .catch((error) => console.log(error));
 
     } else {
+        btnAddedToFavorite.setAttribute("disabled", "disabled");
         fetch('/mytwyt/favorites/deleteFavorite.php',
             {
                 method: 'POST',
@@ -84,7 +84,11 @@ function addToFavorite(twytId, twytText, twytUserScreenName, twytUrl, twytCreate
                 if (data.removed) {
                     window.location.reload(true);
                 }
-            }).catch((error) => console.log(error));
+            }).catch((error) =>{
+                btnAddedToFavorite.setAttribute("disabled", "");
+                console.log(error);
+
+            });
     }
 }
 
@@ -127,6 +131,6 @@ function shareTwyt(twytId,twytText, twytUserScreenName, twytUrl, twytCreatedAt){
             ).then((res) => res.text())
                 .then((data) => twytListWrapper.innerHTML = data)
                 .catch((error) => console.log(error));
-    }
+}
 
-    window.onload = fetchSearchTerm();
+window.onload = fetchSearchTerm();
