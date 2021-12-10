@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/models/twytModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/twytService.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/DbService.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/dbService.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/connection.php';
 
 

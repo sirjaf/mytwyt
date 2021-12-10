@@ -2,7 +2,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/vendor/autoload.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/controllers/twytController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/connection.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/DbService.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/dbService.php';
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
