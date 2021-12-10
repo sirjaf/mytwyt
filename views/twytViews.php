@@ -38,7 +38,8 @@ class TwytView
             //echo $mySqliConnection;
             foreach ($homeTwytList as $item) {
                
-                $link = $item->getTwytUserUrl()??"";
+                $link = $item->getTwytUserUrl();
+                $shareLink = ($link == "")?"No Link":$link;
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
@@ -78,7 +79,7 @@ class TwytView
                                     '$twytId',
                                     '$twytTextSanitized',
                                     '{$item->getTwytUserScreenName()}',
-                                    '{$link}',
+                                    '{$shareLink}',
                                     '{$item->getTwytCreatedAt()}')\">
                                     Share
                                 </button>
@@ -113,7 +114,8 @@ class TwytView
             // $disabled = "";
             foreach ($twytList as $item) {
                
-                $link = $item->getTwytUserUrl()??"";
+                $link = $item->getTwytUserUrl();
+                $shareLink = ($link == "")?"No Link":$link;
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
@@ -147,7 +149,7 @@ class TwytView
                                     '$twytId',
                                     '$twytTextSanitized',
                                     '{$item->getTwytUserScreenName()}',
-                                    '{$link}',
+                                    '{$shareLink}',
                                     '{$item->getTwytCreatedAt()}')\">
                                     Share
                                 </button>
@@ -183,7 +185,7 @@ class TwytView
             foreach ($userTimelineTwyts as $item) {
                 $link = $item->getTwytUserUrl();
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
-
+                $shareLink = ($link == "")?"No Link":$link;
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
                 $twytText = mysqli_real_escape_string($mySqliConnection, $item->getTwytText());
 
@@ -215,7 +217,7 @@ class TwytView
                                     '$twytId',
                                     '$twytTextSanitized',
                                     '{$item->getTwytUserScreenName()}',
-                                    '{$newLink}',
+                                    '{$shareLink}',
                                     '{$item->getTwytCreatedAt()}')\">
                                     Share
                                 </button>

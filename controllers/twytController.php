@@ -10,7 +10,7 @@ class TwytController{
     private $dbService;
     private $twytService;
     private $connection;
-
+             
     public function __construct ($dbService,$twytService,$connection){
         $this->dbService =  $dbService;
         $this->twytService = $twytService;
