@@ -1,6 +1,5 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/connection.php';
-// include_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/models/twytModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/controllers/twytController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/twytService.php';
 
@@ -35,7 +34,6 @@ class TwytView
             $this->btnText = "Add to Favorite";
             $viewString = "<div class='twyt-list-wrapper'>";
             $mySqliConnection = $this->twytController->getMsqliConnection();
-            //echo $mySqliConnection;
             foreach ($homeTwytList as $item) {
                
                 $link = $item->getTwytUserUrl();
@@ -44,17 +42,12 @@ class TwytView
 
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
                 $twytText = mysqli_real_escape_string($mySqliConnection, $item->getTwytText());
-                // $twytId = $item->getTwytId();
-                // $twytText = $item->getTwytText();
-
                 $twytTextSanitized = htmlspecialchars($twytText);
 
                 if ($this->twytController->isTwytInDb($twytId) == true) {
                     $this->disabled = "disabled";
-                    //$this->btnText = "Add to Favorite";
                 } else {
                     $this->disabled = "";
-                    //$this->btnText = "Add to Favorite";
                 }
 
                 $viewString = $viewString . "
@@ -111,7 +104,6 @@ class TwytView
             $this->btnText = ($isFavorite) ? "Remove" : "Add to Favorite";
             $viewString = "<div class='twyt-list-wrapper'>";
             $mySqliConnection = $this->twytController->getMsqliConnection();
-            // $disabled = "";
             foreach ($twytList as $item) {
                
                 $link = $item->getTwytUserUrl();
@@ -126,7 +118,6 @@ class TwytView
                     $this->btnText = "Add to Favorite";
                 } else {
                     $this->disabled = "";
-                    //$this->btnText = "Add to Favorite";
                 }
                 $viewString = $viewString . "
                     
@@ -193,10 +184,8 @@ class TwytView
 
                 if ($this->twytController->isTwytInDb($twytId) == true) {
                     $this->disabled = "disabled";
-                    //$this->btnText = "Add to Favorite";
                 } else {
                     $this->disabled = "";
-                    //$this->btnText = "Add to Favorite";
                 }
 
                 $viewString = $viewString . "

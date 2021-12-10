@@ -23,7 +23,6 @@ try {
     $twytController = new TwytController(new DbService(), new TwytService(new DbService()), new Connection());
     $twytView = new TwytView($twytController);
     if ($twytService->createFavoritesJson() !== null) $twytService->createFavoritesJson();
-
     echo $twytView->view($twytController->getFavoritesJson(), true);
 } catch (\Throwable $e) {
     echo $e->getMessage();
