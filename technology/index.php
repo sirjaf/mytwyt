@@ -12,7 +12,6 @@
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/includes/header.inc.php';?>
 <?php 
 date_default_timezone_set("Africa/Lagos");
-
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/connection.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/views/twytViews.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/twytService.php';
@@ -23,6 +22,5 @@ $twytController = new TwytController(new DbService(), new TwytService(new DbServ
 $twytView = new TwytView($twytController);
 if ($twytService->createListStatusJson(203356824,'technology')!=null)$twytService->createListStatusJson(203356824,'technology');
 echo $twytView->view($twytController->getTechnologyJson(),false);
-
 ?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/includes/footer.inc.php';?>
