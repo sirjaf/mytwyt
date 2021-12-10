@@ -176,13 +176,11 @@ class TwytView
     {
         try {
 
-            //$twytService = new TwytService();
             $mySqliConnection = $this->twytController->getMsqliConnection();
             $userTimelineTwyts = $this->twytController->getUserTimelineTwyts(mysqli_real_escape_string($mySqliConnection,$screenName));
             $this->btnText = "Add to Favorite";
             $viewString = "";
             foreach ($userTimelineTwyts as $item) {
-                // $mySqliConnection = $this->twytConnection->getMsqliConnection();
                 $link = $item->getTwytUserUrl();
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 

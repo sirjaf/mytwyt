@@ -141,6 +141,10 @@ class TwytController{
         return $this->twytService->getTechnologyJsonPath();
     }
 
+    public function getMyAndroidListJson(){
+        return $this->twytService->getMyAndroidListJsonPath();
+    }
+
     public function getPDOConnection(){
         $this->connection->getConnection();
 
