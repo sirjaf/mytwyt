@@ -1,8 +1,8 @@
 <?php
-//require $_SERVER['DOCUMENT_ROOT'].'/mytwyt/vendor/src/TwitterOAuth.php';
 require $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/vendor/autoload.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/controllers/twytController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/connection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/DbService.php';
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
@@ -15,10 +15,8 @@ class TwytService
     const LIST_STATUSES = "lists/statuses";
 
     private $connection;
+    private $dbService;
     private $homeTimelineJsonFile = "/mytwyt/jsons/homeTimeline.json";
-    private $dailyTrustJsonFile = "/mytwyt/jsons/daily_trustTimeline.json";
-    private $leadershipJsonFile = "/mytwyt/jsons/LeadershipNGATimeline.json";
-    private $premiumTimesJsonFile = "/mytwyt/jsons/PremiumTimesngTimeline.json";
     private $flutterJsonFile = "/mytwyt/jsons/flutterTimeline.json";
     private $footballJsonFile = "/mytwyt/jsons/footballTimeline.json";
     private $myAndroidListJsonFile = "/mytwyt/jsons/my-android-listTimeline.json";
@@ -28,20 +26,17 @@ class TwytService
     private $favoritesJsonFile = "/mytwyt/jsons/favorites.json";
 
 
-    public function __construct()
+    public function __construct($dbService)
     {
         \Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']."/mytwyt")->load();
-        // $this->connection = new TwitterOAuth(
-        //     'Dsmr86yGxNH3ujPIkQl4cpcKx',
-        //     'Y0D3gmsytruhyvbJUk5MxOQeH6V6TyEhZ8WICaSTEM4m39HXgn',
-        //     '391616463-rCR7R6tj9EQ9VJtqdbCYqPizFZpjN4d1YY8pdUGn',
-        //     'rd95Vfu0x2RQvamQPbHBCU530Rc5PsshS26JMffco1lC0'
+        
         $this->connection = new TwitterOAuth(
             $_ENV['TWITTER_API_KEY'],
             $_ENV['TWITTER_API_SECRET_KEY'],
             $_ENV['TWITTER_ACCESS_TOKEN'],
             $_ENV['TWITTER_ACCESS_TOKEN_SECRET']
         );
+        $this->dbService = $dbService;
         // );
         //\Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']."/mytwyt")->load();
         //var_dump($_ENV);
@@ -61,23 +56,6 @@ class TwytService
             //$e->getMessage();
             return null;
         }
-    }
-
-    public function createUserTimelineJson($screenName)
-    {
-        //$content = $connection->get("account/verify_credentials"); 
-        $result = $this->connection->get(self::USER_TIMELINE, ["count" => 50, "exclude_replies" => false, "screen_name" => "{$screenName}","tweet_mode"=>"extended"]);
-        $myResult = json_encode($result, JSON_UNESCAPED_SLASHES);
-        $myFile = $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/jsons/" . $screenName . "Timeline.json";
-        $fp = fopen($myFile, 'w');
-        fwrite($fp, $myResult);
-        return $myResult;
-    }
-
-    public function fetUserTimelineTwyts($screenName){
-        $result = $this->connection->get(self::USER_TIMELINE, ["count" => 50, "exclude_replies" => false, "screen_name" => "{$screenName}","tweet_mode"=>"extended"]);
-        $userTimelineTwyts = json_encode($result, JSON_UNESCAPED_SLASHES);
-        return $userTimelineTwyts;
     }
 
     public function createListStatusJson($listId, $slug)
@@ -107,15 +85,36 @@ class TwytService
     }
 
     public function createFavoritesJson(){
-        $pdoConnection = new Connection;
-        $twytController = new TwytController($pdoConnection->getConnection(),null);
-        $favoriteList = $twytController->getFavoritesFromDB();
-        $myFile = $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/jsons/favorites.json";
+        try {
+            
+            $favoriteList = $this->dbService->getFavoritesFromDB();
+            $myFile = $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/jsons/favorites.json";
+            $fp = fopen($myFile, 'w');
+            fwrite($fp, $favoriteList);
+        } catch (\Throwable $e) {
+            echo "error thrown by  CREATEfAVORITESJSON";
+        }
+        
+    }
+
+    public function createUserTimelineJson($screenName)
+    {
+        //$content = $connection->get("account/verify_credentials"); 
+        $result = $this->connection->get(self::USER_TIMELINE, ["count" => 50, "exclude_replies" => false, "screen_name" => "{$screenName}","tweet_mode"=>"extended"]);
+        $myResult = json_encode($result, JSON_UNESCAPED_SLASHES);
+        $myFile = $_SERVER['DOCUMENT_ROOT'] . "/mytwyt/jsons/" . $screenName . "Timeline.json";
         $fp = fopen($myFile, 'w');
-        fwrite($fp, $favoriteList);
+        fwrite($fp, $myResult);
+        return $myResult;
     }
 
 
+
+    public function fetUserTimelineTwyts($screenName){
+        $result = $this->connection->get(self::USER_TIMELINE, ["count" => 50, "exclude_replies" => false, "screen_name" => "{$screenName}","tweet_mode"=>"extended"]);
+        $userTimelineTwyts = json_encode($result, JSON_UNESCAPED_SLASHES);
+        return $userTimelineTwyts;
+    }
 
     public function fetchTwyt($url, $file)
     {
@@ -140,21 +139,6 @@ class TwytService
     public function getHomeTimelineJsonPath(): string
     {
         return $_SERVER['DOCUMENT_ROOT'] . $this->homeTimelineJsonFile;
-    }
-
-    public function getDailyTrustTimelineJsonPath(): string
-    {
-        return $_SERVER['DOCUMENT_ROOT'] . $this->dailyTrustJsonFile;
-    }
-
-    public function getLeadershipTimelineJsonPath(): string
-    {
-        return $_SERVER['DOCUMENT_ROOT'] . $this->leadershipJsonFile;
-    }
-
-    public function getPremiumTimesTimelineJsonPath(): string
-    {
-        return $_SERVER['DOCUMENT_ROOT'] . $this->premiumTimesJsonFile;
     }
 
     public function getFlutterJsonPath(): string

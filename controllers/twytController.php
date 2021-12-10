@@ -1,54 +1,33 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/mytwyt/models/twytModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/twytService.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/DbService.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/connection.php';
+
+
 class TwytController{
-    private $pdo;
-    private $service=null;
+    //private $pdo;
+    private $dbService;
+    private $twytService;
+    private $connection;
 
-    public function __construct($pdo,$service){
-        $this->pdo = $pdo;
-        $this->service = ($service==null)?null:$service;      
-    }
-    public function getFavoritesFromDB()
-    {
-        try {
-            $sql = "SELECT * FROM tblfavorites";
-            $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
-            $stmt =$this->pdo->prepare($sql);
-            $stmt->execute();
-            $favoritesList = $stmt->fetchAll();
-            return json_encode($favoritesList);
-        } catch (\Throwable $e) {
-            echo $e->getMessage();
-            return null;
-        }
-       
+    public function __construct ($dbService,$twytService,$connection){
+        $this->dbService =  $dbService;
+        $this->twytService = $twytService;
+        $this->connection = $connection;      
     }
 
-    private function getFavoritesTwytIds()
-    {
-        try {
-            $sql = "SELECT twytId FROM tblfavorites";
-            $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
-            $stmt =$this->pdo->prepare($sql);
-            $stmt->execute();
-            $favoritesList = $stmt->fetchAll();
-            return $favoritesList;
-            
-        } catch (\Throwable $e) {
-            echo $e->getMessage();
-            return null;
-        }
-       
+    public function getFavorites(){
+        return $this->dbService->getFavoritesFromDB();
     }
 
     public function getUserTimelineTwyts($screenName){
-        $userTimelineTwyts = $this->service->fetUserTimelineTwyts($screenName);
+        $userTimelineTwyts = $this->twytService->fetUserTimelineTwyts($screenName);
         return $this->createTwytObjects($userTimelineTwyts);
     }
 
     public function isTwytInDb($twytId) {
-        $favoriteTwytList = $this->getFavoritesTwytIds();
+        $favoriteTwytList = $this->dbService->getFavoritesTwytIds();
         $twytStatus = false;
         foreach ($favoriteTwytList as $twytIdItem) {
             
@@ -62,41 +41,13 @@ class TwytController{
 
     public function addFavorite(string $twytId, string $twytText, string $twytUserScreenName,string $twytUserUrl,string $twytCreatedAt,string $twytProfileImage)
     {
-        try {
-            $sql = "INSERT INTO tblfavorites(twytId,twytText,twytUserScreenName,twytUserUrl,twytCreatedAt,twytProfileImage)VALUES(:twytId,:twytText,:twytUserScreenName,:twytUserUrl,:twytCreatedAt,:twytProfileImage)";
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([
-                    'twytId'=>$twytId,
-                    'twytText'=>$twytText,
-                    'twytUserScreenName'=>$twytUserScreenName,
-                    'twytUserUrl'=>$twytUserUrl,
-                    'twytCreatedAt'=>$twytCreatedAt,
-                    'twytProfileImage'=>$twytProfileImage]);
-    
-           $data = array("added"=>true);
-           echo json_encode($data);
-        } catch (\Throwable $e) {
-            $e->getMessage();
-            $data = array("added"=>false);
-            echo json_encode($data);
-        }
+        $this->dbService->addFavoriteToDb($twytId,$twytText,$twytUserScreenName,$twytUserUrl,$twytCreatedAt,$twytProfileImage);
        
     }
 
     public function deleteFavorite(string $favoriteId)
     {
-        try {
-            $sql = "DELETE FROM tblfavorites WHERE twytId=:twytId";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(['twytId'=>$favoriteId]);
-            $data = array("removed"=>true);
-            echo json_encode($data);
-        } catch (\Throwable $e) {
-            $e->getMessage();
-            $data = array("removed"=>false);
-            echo json_encode($data);
-        }
+        $this->dbService->deleteFavoriteFromDb($favoriteId);
        
         
     }
@@ -158,5 +109,52 @@ class TwytController{
             array_push($listOfTwytObjs,$twytObj);
         }
         return $listOfTwytObjs;
+    }
+
+    public function getFavoritesJson(){
+       return $this->twytService->getFavoritesJsonPath();
+    }
+
+    public function getHomeTimelineJson(){
+        return $this->twytService->getHomeTimelineJsonPath();
+    }
+
+    public function getNigerianNewsJson(){
+        return $this->twytService->getNigerianNewsJsonPath();
+    }
+
+    public function getWebDevJson(){
+        return $this->twytService->getWebDevJsonPath();
+    }
+
+    public function getFlutterJson(){
+    
+        return $this->twytService->getFlutterJsonPath();
+
+    }
+
+    public function getFootballJson(){
+        return $this->twytService->getFootballJsonPath();
+    }
+
+    public function getTechnologyJson(){
+        return $this->twytService->getTechnologyJsonPath();
+    }
+
+    public function getPDOConnection(){
+        $this->connection->getConnection();
+
+    }
+
+    public function getMsqliConnection(){
+       return $this->connection->getMsqliConnection();
+    }
+
+    public function getDBService(){
+        return $this->dbService;
+    }
+
+    public function getTwytService(){
+        return $this->twytService;
     }
 }

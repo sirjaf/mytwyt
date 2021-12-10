@@ -15,9 +15,11 @@ date_default_timezone_set("Africa/Lagos");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/connection.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/views/twytViews.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/twytService.php';
-$connection = new Connection;
-$twytService = new TwytService();
-$twytView = new TwytView($connection);
+require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/dbService.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/controllers/twytController.php';
+$twytService = new TwytService(new DbService());
+$twytController = new TwytController(new DbService(), new TwytService(new DbService()),new Connection());
+$twytView = new TwytView($twytController);
 if ($twytService->createHomeTimelineJson()!==null)$twytService->createHomeTimelineJson();
 echo $twytView->homeTimelimeView();
 ?>

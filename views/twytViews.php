@@ -6,15 +6,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/twytService.php';
 
 class TwytView
 {
-    private $twytConnection;
     private $twytController;
     private $disabled = "";
     private $btnText;
 
-    public function __construct($twytConnection)
+
+    public function __construct($twytController)
     {
-        $this->twytConnection = $twytConnection;
-        $this->twytController = new TwytController($this->twytConnection->getConnection(), new TwytService());
+        $this->twytController = $twytController;
     }
 
     private function getTwytList($jsonFile, $isFavarite)
@@ -32,13 +31,14 @@ class TwytView
     {
         try {
 
-            $twytService = new TwytService();
-            $homeTwytList = $this->getTwytList($twytService->getHomeTimelineJsonPath(), false);
+            $homeTwytList = $this->getTwytList($this->twytController->getHomeTimelineJson(), false);
             $this->btnText = "Add to Favorite";
             $viewString = "<div class='twyt-list-wrapper'>";
+            $mySqliConnection = $this->twytController->getMsqliConnection();
+            //echo $mySqliConnection;
             foreach ($homeTwytList as $item) {
-                $mySqliConnection = $this->twytConnection->getMsqliConnection();
-                $link = $item->getTwytUserUrl();
+               
+                $link = $item->getTwytUserUrl()??"";
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
@@ -109,10 +109,11 @@ class TwytView
             $twytList = $this->getTwytList($jsonPath, $isFavorite);
             $this->btnText = ($isFavorite) ? "Remove" : "Add to Favorite";
             $viewString = "<div class='twyt-list-wrapper'>";
+            $mySqliConnection = $this->twytController->getMsqliConnection();
             // $disabled = "";
             foreach ($twytList as $item) {
-                $mySqliConnection = $this->twytConnection->getMsqliConnection();
-                $link = $item->getTwytUserUrl();
+               
+                $link = $item->getTwytUserUrl()??"";
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
@@ -176,7 +177,7 @@ class TwytView
         try {
 
             //$twytService = new TwytService();
-            $mySqliConnection = $this->twytConnection->getMsqliConnection();
+            $mySqliConnection = $this->twytController->getMsqliConnection();
             $userTimelineTwyts = $this->twytController->getUserTimelineTwyts(mysqli_real_escape_string($mySqliConnection,$screenName));
             $this->btnText = "Add to Favorite";
             $viewString = "";
@@ -216,7 +217,7 @@ class TwytView
                                     '$twytId',
                                     '$twytTextSanitized',
                                     '{$item->getTwytUserScreenName()}',
-                                    '{$link}',
+                                    '{$newLink}',
                                     '{$item->getTwytCreatedAt()}')\">
                                     Share
                                 </button>
