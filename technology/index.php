@@ -24,7 +24,7 @@ try {
     $twytService = new TwytService(new DbService());
     $twytController = new TwytController(new DbService(), new TwytService(new DbService()), new Connection());
     $twytView = new TwytView($twytController);
-    if ($twytService->createListStatusJson(203356824, 'technology') != null) $twytService->createListStatusJson(203356824, 'technology');
+    //if ($twytService->createListStatusJson(203356824, 'technology') != null) $twytService->createListStatusJson(203356824, 'technology');
     echo $twytView->view($twytController->getTechnologyJson(), false);
 } catch (\Throwable $e) {
     echo $e->getMessage();

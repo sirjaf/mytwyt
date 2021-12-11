@@ -22,7 +22,7 @@ try {
     $twytService = new TwytService(new DbService());
     $twytController = new TwytController(new DbService(), new TwytService(new DbService()), new Connection());
     $twytView = new TwytView($twytController);
-    if ($twytService->createListStatusJson(12751959157756846084, 'web-dev') != null) $twytService->createListStatusJson(12751959157756846084, 'web-dev');
+    //if ($twytService->createListStatusJson(12751959157756846084, 'web-dev') != null) $twytService->createListStatusJson(12751959157756846084, 'web-dev');
     echo $twytView->view($twytController->getWebDevJson(), false);
 } catch (\Throwable $e) {
     echo $e->getMessage();

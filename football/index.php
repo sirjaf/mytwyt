@@ -21,7 +21,7 @@ try {
     $twytService = new TwytService(new DbService());
     $twytController = new TwytController(new DbService(), new TwytService(new DbService()), new Connection());
     $twytView = new TwytView($twytController);
-    if ($twytService->createListStatusJson(203356338, 'football') != null) $twytService->createListStatusJson(203356338, 'football');
+    //if ($twytService->createListStatusJson(203356338, 'football') != null) $twytService->createListStatusJson(203356338, 'football');
     echo $twytView->view($twytController->getFootballJson(), false);
 } catch (\Throwable $e) {
     echo $e->getMessage();

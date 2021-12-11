@@ -21,7 +21,7 @@ try {
     $twytService = new TwytService(new DbService());
     $twytController = new TwytController(new DbService(), new TwytService(new DbService()), new Connection());
     $twytView = new TwytView($twytController);
-    if ($twytService->createListStatusJson(1275198258265174018, 'flutter') != null) $twytService->createListStatusJson(1275198258265174018, 'flutter');
+    //if ($twytService->createListStatusJson(1275198258265174018, 'flutter') != null) $twytService->createListStatusJson(1275198258265174018, 'flutter');
     echo $twytView->view($twytController->getFlutterJson(), false);
 } catch (\Throwable $e) {
     echo $e->getMessage();

@@ -21,7 +21,7 @@ try {
     $twytService = new TwytService(new DbService());
     $twytController = new TwytController(new DbService(), new TwytService(new DbService()), new Connection());
     $twytView = new TwytView($twytController);
-    if ($twytService->createHomeTimelineJson() !== null) $twytService->createHomeTimelineJson();
+   // if ($twytService->createHomeTimelineJson() !== null) $twytService->createHomeTimelineJson();
     echo $twytView->homeTimelimeView();
 } catch (\Throwable $e) {
     echo $e->getMessage();

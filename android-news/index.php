@@ -21,7 +21,7 @@ try {
     $twytService = new TwytService(new DbService());
     $twytController = new TwytController(new DbService(), new TwytService(new DbService()), new Connection());
     $twytView = new TwytView($twytController);
-    if ($twytService->createListStatusJson(203355522, 'my-android-list') !== null) $twytService->createListStatusJson(203355522, 'my-android-list');
+    //if ($twytService->createListStatusJson(203355522, 'my-android-list') !== null) $twytService->createListStatusJson(203355522, 'my-android-list');
     echo $twytView->view($twytController->getMyAndroidListJson(), false);
 } catch (\Throwable $e) {
     echo $e->getMessage();
