@@ -11,6 +11,13 @@ try {
     $twytService->createListStatusJson(1275198258265174018, 'flutter');
     $twytService->createListStatusJson(203356824, 'technology');
     $twytService->createListStatusJson(203356338, 'football');
+
+    $twytService->fetchTwytImages($twytService->getHomeTimelineJsonPath());
+    $twytService->fetchTwytImages($twytService->getNigerianNewsJsonPath());
+    $twytService->fetchTwytImages($twytService->getWebDevJsonPath());
+    $twytService->fetchTwytImages($twytService->getFlutterJsonPath());
+    $twytService->fetchTwytImages($twytService->getTechnologyJsonPath());
+    $twytService->fetchTwytImages($twytService->getFootballJsonPath());
    
 } catch (\Throwable $e) {
     echo $e->getMessage();

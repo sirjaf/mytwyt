@@ -184,9 +184,7 @@ class TwytService
         
         $uri = $userProfileImageUrl;
         $reqPrefs['http']['method'] = 'GET';
-        // $reqPrefs['http']['header'] = 'X-Auth-Token: 352e6612f90546368c8e81a8eb633c35';
         $myImageFile = $_SERVER['DOCUMENT_ROOT']."/mytwyt/images/".$twyUsertId.".jpg";
-        
         $stream_context = stream_context_create($reqPrefs);
         $response = file_get_contents($uri, false, $stream_context);
         $fp = fopen($myImageFile, 'w');
