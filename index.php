@@ -10,7 +10,9 @@
     "search" => ""
 ); ?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/includes/header.inc.php'; ?>
+
 <?php
+header('Access-Control-Allow-Origin: *'); 
 try {
     date_default_timezone_set("Africa/Lagos");
     require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/connection.php';
