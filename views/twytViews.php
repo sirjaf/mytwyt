@@ -13,7 +13,7 @@ class TwytView
     public function __construct($twytController)
     {
         $this->twytController = $twytController;
-        $this->imagesPath ='https://jafsoft.com.ng/mytwyt/images';
+        $this->imagesPath = 'https://jafsoft.com.ng/mytwyt/images';
     }
 
     private function getTwytList($jsonFile, $isFavarite)
@@ -36,9 +36,9 @@ class TwytView
             $viewString = "<div class='twyt-list-wrapper'>";
             $mySqliConnection = $this->twytController->getMsqliConnection();
             foreach ($homeTwytList as $item) {
-               
+
                 $link = $item->getTwytUserUrl();
-                $shareLink = ($link == "")?"No Link":$link;
+                $shareLink = ($link == "") ? "No Link" : $link;
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
@@ -107,9 +107,9 @@ class TwytView
             $viewString = "<div class='twyt-list-wrapper'>";
             $mySqliConnection = $this->twytController->getMsqliConnection();
             foreach ($twytList as $item) {
-               
+
                 $link = $item->getTwytUserUrl();
-                $shareLink = ($link == "")?"No Link":$link;
+                $shareLink = ($link == "") ? "No Link" : $link;
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
@@ -173,13 +173,13 @@ class TwytView
         try {
 
             $mySqliConnection = $this->twytController->getMsqliConnection();
-            $userTimelineTwyts = $this->twytController->getUserTimelineTwyts(mysqli_real_escape_string($mySqliConnection,$screenName));
+            $userTimelineTwyts = $this->twytController->getUserTimelineTwyts(mysqli_real_escape_string($mySqliConnection, $screenName));
             $this->btnText = "Add to Favorite";
             $viewString = "";
             foreach ($userTimelineTwyts as $item) {
                 $link = $item->getTwytUserUrl();
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
-                $shareLink = ($link == "")?"No Link":$link;
+                $shareLink = ($link == "") ? "No Link" : $link;
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
                 $twytText = mysqli_real_escape_string($mySqliConnection, $item->getTwytText());
 
