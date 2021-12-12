@@ -6,7 +6,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <link rel="stylesheet" type="text/css" href="/mytwyt/css/main.css">
         <title>mytwyt</title>
-        <link rel="icon" type="image/x-icon" href="/mytwyt/images/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="/mytwyt/favicon/favicon.ico">
     </head>
         <body>
             <main>
