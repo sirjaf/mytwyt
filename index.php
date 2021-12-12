@@ -1,5 +1,5 @@
 <?php 
-header('Access-Control-Allow-Origin: *'); 
+ 
 $activeArray = array(
     "home" => "class='active'",
     "nigerian-news" => "",
