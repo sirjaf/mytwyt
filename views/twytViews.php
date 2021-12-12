@@ -2,7 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/connection.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/controllers/twytController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/services/twytService.php';
-
+header('Access-Control-Allow-Origin: *'); 
 class TwytView
 {
     private $twytController;
