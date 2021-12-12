@@ -13,7 +13,7 @@ class TwytView
     public function __construct($twytController)
     {
         $this->twytController = $twytController;
-        $this->imagesPath = $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/images';
+        $this->imagesPath ='/mytwyt/images';
     }
 
     private function getTwytList($jsonFile, $isFavarite)
