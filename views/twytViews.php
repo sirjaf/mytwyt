@@ -55,7 +55,7 @@ class TwytView
                 
                     <div class='tywt-wrapper' id='div-{$item->getTwytId()}'>
                         <div class='tywt-content'>
-                            <img src='$this->imagesPath/$twytId.jpeg' width=100 height=100 alt='{$item->getTwytUserScreenName()}'>
+                            <img src='$this->imagesPath/$twytId.jpg' width=100 height=100 alt='{$item->getTwytUserScreenName()}'>
                             <p>" . $item->getTwytText() . "</p>
                         </div>
                         <div class='twyt-url'>
@@ -125,7 +125,7 @@ class TwytView
                     
                         <div class='tywt-wrapper' id='{$item->getTwytId()}'>
                             <div class='tywt-content'>
-                                <img src='$this->imagesPath/$twytId.jpeg' width=100 height=100 alt='{$item->getTwytUserScreenName()}'>
+                                <img src='$this->imagesPath/$twytId.jpg' width=100 height=100 alt='{$item->getTwytUserScreenName()}'>
                                 <p>" . $item->getTwytText() . "</p>
                             </div>
                             <div class='twyt-url'>
@@ -202,7 +202,7 @@ class TwytView
                         </div>
                         <br><br>
                         <div class='tywyt-user'>
-                            <img src='$this->imagesPath/$twytId.jpeg' width=100 height=100 alt='{$item->getTwytUserScreenName()}'>
+                            <img src='$this->imagesPath/$twytId.jpg' width=100 height=100 alt='{$item->getTwytUserScreenName()}'>
                             <p>Posted by: " . $item->getTwytUserScreenName() . "<span>@" . $item->getTwytCreatedAt() . "</span></p>
                             <div class='tywyt-user-actions'>
                                
