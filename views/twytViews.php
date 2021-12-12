@@ -8,11 +8,12 @@ class TwytView
     private $twytController;
     private $disabled = "";
     private $btnText;
-
+    private $imagesPath;
 
     public function __construct($twytController)
     {
         $this->twytController = $twytController;
+        $this->imagesPath = $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/images';
     }
 
     private function getTwytList($jsonFile, $isFavarite)
@@ -54,6 +55,7 @@ class TwytView
                 
                     <div class='tywt-wrapper' id='div-{$item->getTwytId()}'>
                         <div class='tywt-content'>
+                            <img src='$this->imagesPath/$twytId.jpeg' width=100 height=100 alt='{$item->getTwytUserScreenName()}'>
                             <p>" . $item->getTwytText() . "</p>
                         </div>
                         <div class='twyt-url'>
@@ -123,6 +125,7 @@ class TwytView
                     
                         <div class='tywt-wrapper' id='{$item->getTwytId()}'>
                             <div class='tywt-content'>
+                                <img src='$this->imagesPath/$twytId.jpeg' width=100 height=100 alt='{$item->getTwytUserScreenName()}'>
                                 <p>" . $item->getTwytText() . "</p>
                             </div>
                             <div class='twyt-url'>
@@ -199,6 +202,7 @@ class TwytView
                         </div>
                         <br><br>
                         <div class='tywyt-user'>
+                            <img src='$this->imagesPath/$twytId.jpeg' width=100 height=100 alt='{$item->getTwytUserScreenName()}'>
                             <p>Posted by: " . $item->getTwytUserScreenName() . "<span>@" . $item->getTwytCreatedAt() . "</span></p>
                             <div class='tywyt-user-actions'>
                                
