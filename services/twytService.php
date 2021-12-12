@@ -175,16 +175,16 @@ class TwytService
         $response = file_get_contents($jsonFile);
         $jsonToAssocArray = json_decode($response,true);
         foreach ($jsonToAssocArray as $item) {
-           $this->fetchImage($item['user']['id'],$item['user']['profile_image_url_https']);
+           $this->fetchImage($item['user']['screen_name'],$item['user']['profile_image_url_https']);
         }
 
     }
 
-    private function fetchImage($twyUsertId,$userProfileImageUrl){
+    private function fetchImage($twyUserScreenName,$userProfileImageUrl){
         
         $uri = $userProfileImageUrl;
         $reqPrefs['http']['method'] = 'GET';
-        $myImageFile = $_SERVER['DOCUMENT_ROOT']."/mytwyt/images/".$twyUsertId.".jpeg";
+        $myImageFile = $_SERVER['DOCUMENT_ROOT']."/mytwyt/images/".$twyUserScreenName.".jpeg";
         $stream_context = stream_context_create($reqPrefs);
         $response = file_get_contents($uri, false, $stream_context);
         $fp = fopen($myImageFile, 'w');
