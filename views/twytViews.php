@@ -9,11 +9,11 @@ class TwytView
     private $disabled = "";
     private $btnText;
     private $imagesPath;
-
+    const BASE_URL = "https://jafsoft.com.ng";
     public function __construct($twytController)
     {
         $this->twytController = $twytController;
-        $this->imagesPath = 'https://jafsoft.com.ng/mytwyt/images';
+        $this->imagesPath = '/mytwyt/images';//self::BASE_URL .
     }
 
     private function getTwytList($jsonFile, $isFavarite)

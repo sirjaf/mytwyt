@@ -160,6 +160,8 @@ input[type=text]{
     font-weight: bold;
 }
 
+
+
 .main-content-wrapper{
     margin: auto;
     display: -webkit-box;
@@ -174,6 +176,8 @@ input[type=text]{
             justify-content: center;
     width: 65%;
 }
+
+
 .tywt-wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -221,11 +225,12 @@ input[type=text]{
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
             align-items: stretch;
-    margin-top: 10px;
+   
     padding: 10px 0px;
     border-top: 2px solid var(--primary-color);
     background-color: var(--primary-color);
     color: white;
+    margin-top: 10px;
 }
 
 .tywyt-user > p{
