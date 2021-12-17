@@ -176,7 +176,20 @@ input[type=text]{
             justify-content: center;
     width: 65%;
 }
-
+.twyt-list-wrapper{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -webkit-box-pack: justify;
+                    -ms-flex-pack: justify;
+                        justify-content: space-between;
+}
 
 .tywt-wrapper {
     display: -webkit-box;
@@ -195,7 +208,9 @@ input[type=text]{
     -webkit-box-shadow: 5px 5px 30px gray;
             box-shadow: 5px 5px 30px gray;
     border-radius: 5px;
-
+    width: 48%;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
 }
 .tywt-content{
     display: -webkit-box;
@@ -205,12 +220,13 @@ input[type=text]{
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
+                -webkit-box-align: start;
+                        -ms-flex-align: start;
+                            align-items: flex-start;
     padding: 0px 5px;
     word-wrap: break-word;
 }
+
 .tywyt-user {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -362,6 +378,21 @@ progress{
         width: 100%;
         
     }
+
+    .twyt-list-wrapper{
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+                flex-direction: row;
+
+    }
+
+    .tywt-wrapper {
+        width: auto;
+        
+    }
+        
+        
     .tywt-content p{
         word-wrap: break-word;
     }
