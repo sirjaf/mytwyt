@@ -175,7 +175,7 @@ class TwytView
             $mySqliConnection = $this->twytController->getMsqliConnection();
             $userTimelineTwyts = $this->twytController->getUserTimelineTwyts(mysqli_real_escape_string($mySqliConnection, $screenName));
             $this->btnText = "Add to Favorite";
-            $viewString = "";
+            $viewString = "<div class='twyt-list-wrapper'>";
             foreach ($userTimelineTwyts as $item) {
                 $link = $item->getTwytUserUrl();
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
