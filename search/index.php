@@ -14,12 +14,14 @@
     $screenName = $_GET['screenname']??'';
     echo "<div class=searchForm>
         <h1>Search For User Timeline</h1>
-        <form action='/mytwyt/search/searchProcessor.php'>
+        <form >
             <input type='text' name='screenName' id='txtScreenName' value= '{$screenName}' >
-            <button type='submit' id='btnSearch'>Search</button>
+            <button type='button' id='btnSearch'>Search</button>
         </form>
-        <progress value='0' max='100'>
-        </progress>
+       
+        <div id='searchProgressContainer' class='hide'>
+            <div class='searchProgress' ></div>
+        </div>
         <div id='twyt-list-wrapper'>
 
         </div>

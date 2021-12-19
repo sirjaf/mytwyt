@@ -17,6 +17,9 @@ if (document.getElementById('btnSearch') != null) {
             event.preventDefault();
             var searchInput = document.getElementById('txtScreenName').value;
             var twytListWrapper = document.getElementById('twyt-list-wrapper');
+            var searchProgressContainer = document.getElementById('searchProgressContainer');
+            searchProgressContainer.classList.remove('hide');
+            
             fetch('/mytwyt/search/searchProcessor.php',
                 {
                     method: 'POST',
@@ -28,8 +31,12 @@ if (document.getElementById('btnSearch') != null) {
                     body: 'screenName=' + searchInput
                 }
             ).then((res) => res.text())
-                .then((data) => twytListWrapper.innerHTML = data)
-                .catch((error) => console.log(error));
+                .then((data) => {
+                    searchProgressContainer.classList.add('hide');
+                    twytListWrapper.innerHTML = data})
+                .catch((error) => {
+                    searchProgressContainer.classList.add('hide');
+                    console.log(error)});
 
         }
     );
@@ -115,9 +122,11 @@ function shareTwyt(twytId,twytText, twytUserScreenName, twytUrl, twytCreatedAt){
     
         var searchInput = document.getElementById('txtScreenName');
         var twytListWrapper = document.getElementById('twyt-list-wrapper');
-        
+        var searchProgressContainer = document.getElementById('searchProgressContainer');
+
         if(!searchInput) return;
         if(searchInput.value=="") return;
+        searchProgressContainer.classList.remove('hide');
         fetch('/mytwyt/search/searchProcessor.php',
                 {
                     method: 'POST',
@@ -129,8 +138,14 @@ function shareTwyt(twytId,twytText, twytUserScreenName, twytUrl, twytCreatedAt){
                     body: 'screenName=' + searchInput.value
                 }
             ).then((res) => res.text())
-                .then((data) => twytListWrapper.innerHTML = data)
-                .catch((error) => console.log(error));
+                .then((data) => {
+                    searchProgressContainer.classList.add('hide');
+                    twytListWrapper.innerHTML = data
+                })
+                .catch((error) => {
+                    searchProgressContainer.classList.add('hide');
+                    console.log(error)}
+                    );
 }
 
 window.onload = fetchSearchTerm();
