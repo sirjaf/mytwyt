@@ -9,7 +9,9 @@
     "favorites" => "",
     "search" => "class='active'"
 ); ?>
-<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/includes/header.inc.php'; ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/includes/header.inc.php'; 
+    date_default_timezone_set("Africa/Lagos");
+?>
 <?php
     $screenName = $_GET['screenname']??'';
     echo "<div class=searchForm>

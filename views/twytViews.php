@@ -38,7 +38,8 @@ class TwytView
             foreach ($homeTwytList as $item) {
 
                 $link = $item->getTwytUserUrl();
-                $shareLink = ($link == "") ? "No Link" : $link;
+                $twytLink ="https://twitter.com/{$item->getTwytUserScreenName()}/status/{$item->getTwytId()}";
+                $shareLink = ($link == "") ? $twytLink : $link;
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
@@ -109,7 +110,8 @@ class TwytView
             foreach ($twytList as $item) {
 
                 $link = $item->getTwytUserUrl();
-                $shareLink = ($link == "") ? "No Link" : $link;
+                $twytLink ="https://twitter.com/{$item->getTwytUserScreenName()}/status/{$item->getTwytId()}";
+                $shareLink = ($link == "") ? $twytLink : $link;
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
@@ -129,7 +131,7 @@ class TwytView
                                 <p>" . $item->getTwytText() . "</p>
                             </div>
                             <div class='twyt-url'>
-                                <span>{$newLink} </span>
+                                <span>{$newLink } </span>
                             </div>
                             <br><br>
                             <div class='tywyt-user'>
@@ -178,8 +180,9 @@ class TwytView
             $viewString = "<div class='twyt-list-wrapper'>";
             foreach ($userTimelineTwyts as $item) {
                 $link = $item->getTwytUserUrl();
+                $twytLink ="https://twitter.com/{$item->getTwytUserScreenName()}/status/{$item->getTwytId()}";
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
-                $shareLink = ($link == "") ? "No Link" : $link;
+                $shareLink = ($link == "") ? $twytLink : $link;
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
                 $twytText = mysqli_real_escape_string($mySqliConnection, $item->getTwytText());
 
