@@ -363,7 +363,7 @@ footer{
     }
   }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 710px) {
     .header{
         display: -webkit-box;
         display: -ms-flexbox;
