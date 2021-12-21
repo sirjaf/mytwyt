@@ -3,7 +3,7 @@ function hideShowNav() {
     var headerNav = document.getElementById('nav-header');
     var screenSize = window.screen.width;
 
-    if (isHidden && (screenSize <= 600)) {
+    if (isHidden && (screenSize <= 950)) {
         headerNav.classList.add('hide');
         isHidden = false;
     } else {
