@@ -437,6 +437,7 @@ footer{
     }
     .tywyt-user p{
         word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     .tywyt-user * a {
         margin: 0px;
