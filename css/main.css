@@ -176,7 +176,14 @@ input[type=text]{
             justify-content: center;
     width: 65%;
 }
+
 .twyt-list-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* .twyt-list-wrapper{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -189,7 +196,7 @@ input[type=text]{
                 -webkit-box-pack: justify;
                     -ms-flex-pack: justify;
                         justify-content: space-between;
-}
+} */
 
 .tywt-wrapper {
     display: -webkit-box;
@@ -208,7 +215,7 @@ input[type=text]{
     -webkit-box-shadow: 5px 5px 30px gray;
             box-shadow: 5px 5px 30px gray;
     border-radius: 5px;
-    width: 48%;
+    width: auto;
     -ms-flex-item-align: start;
         align-self: flex-start;
 }
@@ -363,7 +370,7 @@ footer{
     }
   }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width:950px) {
     .header{
         display: -webkit-box;
         display: -ms-flexbox;
@@ -409,7 +416,9 @@ footer{
     }
 
     .twyt-list-wrapper{
-        
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
         -webkit-box-orient: vertical;
         
         -webkit-box-direction: normal;
@@ -428,6 +437,7 @@ footer{
         
     .tywt-content p{
         word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     .tywyt-user{
         -webkit-box-orient: vertical;
