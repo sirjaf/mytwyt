@@ -12,7 +12,7 @@ class DbService
     public function getFavoritesFromDB()
     {
         try {
-            $sql = "SELECT * FROM tblfavorites ORDER BY DESC";
+            $sql = "SELECT * FROM tblfavorites ORDER BY id DESC";
             $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
             $stmt =$this->pdo->prepare($sql);
             $stmt->execute();
