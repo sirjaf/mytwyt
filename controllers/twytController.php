@@ -30,6 +30,10 @@ class TwytController
         return $this->createTwytObjects($userTimelineTwyts);
     }
 
+    public function getUserTimelineTwytsJson($screenName){
+        return $this->twytService->fetchUfetUserTimelineTwytsJson($screenName);
+    }
+
     public function isTwytInDb($twytId)
     {
         $favoriteTwytList = $this->dbService->getFavoritesTwytIds();
