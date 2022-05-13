@@ -31,7 +31,7 @@ class TwytController
     }
 
     public function getUserTimelineTwytsJson($screenName){
-        return $this->twytService->fetchUfetUserTimelineTwytsJson($screenName);
+        return $this->twytService->fetchUserTimelineTwyts($screenName);
     }
 
     public function isTwytInDb($twytId)

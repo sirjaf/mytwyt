@@ -116,10 +116,10 @@ class TwytService
         return $userTimelineTwyts;
     }
 
-    public function fetUserTimelineTwytsJson($screenName){
-        $result = $this->connection->get(self::USER_TIMELINE, ["count" => 50, "exclude_replies" => false, "screen_name" => "{$screenName}","tweet_mode"=>"extended"]);
-        return $result;
-    }
+    // public function fetUserTimelineTwytsJson($screenName){
+    //     $result = $this->connection->get(self::USER_TIMELINE, ["count" => 50, "exclude_replies" => false, "screen_name" => "{$screenName}","tweet_mode"=>"extended"]);
+    //     return $result;
+    // }
 
     public function fetchTwyt($url, $file)
     {
