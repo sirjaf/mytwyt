@@ -110,7 +110,7 @@ class TwytService
 
 
 
-    public function fetUserTimelineTwyts($screenName){
+    public function fetchUserTimelineTwyts($screenName){
         $result = $this->connection->get(self::USER_TIMELINE, ["count" => 50, "exclude_replies" => false, "screen_name" => "{$screenName}","tweet_mode"=>"extended"]);
         $userTimelineTwyts = json_encode($result, JSON_UNESCAPED_SLASHES);
         return $userTimelineTwyts;
