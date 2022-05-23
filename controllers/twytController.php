@@ -26,7 +26,7 @@ class TwytController
 
     public function getUserTimelineTwyts($screenName)
     {
-        $userTimelineTwyts = $this->twytService->fetUserTimelineTwyts($screenName);
+        $userTimelineTwyts = $this->twytService->fetchUserTimelineTwyts($screenName);
         return $this->createTwytObjects($userTimelineTwyts);
     }
 
