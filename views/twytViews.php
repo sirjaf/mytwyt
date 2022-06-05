@@ -64,7 +64,7 @@ class TwytView
                         </div>
                         <br><br>
                         <div class='tywyt-user'>
-                            <p>Posted by: 
+                            <p> 
                                 <a href='/mytwyt/search/index.php?screenname={$item->getTwytUserScreenName()}'>{$item->getTwytUserScreenName()} </a>
                                 <span>@" . $item->getTwytCreatedAt() . "</span>
                             </p>
@@ -135,7 +135,7 @@ class TwytView
                             </div>
                             <br><br>
                             <div class='tywyt-user'>
-                                <p>Posted by: 
+                                <p>
                                     <a href='/mytwyt/search/index.php?screenname={$item->getTwytUserScreenName()}'>{$item->getTwytUserScreenName()} </a>
                                     <span>@" . $item->getTwytCreatedAt() . "</span>
                                 </p>
