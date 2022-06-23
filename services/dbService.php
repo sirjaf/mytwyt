@@ -42,6 +42,15 @@ class DbService
        
     }
 
+    public function getFavoritesTwytIdsJson()
+    {
+        
+            return json_encode($this->getFavoritesTwytIds());
+            
+       
+       
+    }
+
     public function addFavoriteToDb(string $twytId, string $twytText, string $twytUserScreenName,string $twytUserUrl,string $twytCreatedAt,string $twytProfileImage)
     {
         try {
