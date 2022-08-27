@@ -130,7 +130,7 @@ function addFavoritesSelected() {
   let strFavoriteSelected = "";
   isAddFavoriteClicked = true;
 
-  let bodyTag = document.getElementById("site-html");
+  let bodyTag = document.getElementById("site-body");
   let btnFavoritesSelected = document.getElementById("btnFavoritesSelected");
   bodyTag.style.cursor = "wait";
   favoritesSelected = twytsSelected();
@@ -259,7 +259,7 @@ function addToFavorite(
   twytProfileImage
 ) {
   var btnAddedToFavorite = document.getElementById(`btn-${twytId}`);
-  let bodyTag = document.getElementById("site-html");
+  let bodyTag = document.getElementById("site-body");
   bodyTag.style.cursor = "wait";
   if (btnAddedToFavorite.innerHTML == "Add to Favorite") {
     btnAddedToFavorite.setAttribute("disabled", "disabled");
