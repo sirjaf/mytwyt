@@ -229,7 +229,7 @@ function shareSelected() {
     return;
   }
   if (navigator.share) {
-    shareSelected.forEach((twyt) => {
+    sharesSelected.forEach((twyt) => {
       navigator
         .share({
           title: `Posted by ${twyt.twytUserScreenName} @${twyt.twytCreatedAt}`,
