@@ -8,7 +8,9 @@
     "football" => "",
     "favorites" => "",
     "search" => "class='active'"
-); ?>
+); 
+$page = "search";
+?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/includes/header.inc.php'; 
     date_default_timezone_set("Africa/Lagos");
 ?>

@@ -8,7 +8,9 @@
     "football" => "",
     "favorites" => "class='active'",
     "search" => ""
-); ?>
+); 
+$page = "favorite";
+?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/includes/header.inc.php'; ?>
 <?php
 try {

@@ -13,7 +13,7 @@ class TwytView
     public function __construct($twytController)
     {
         $this->twytController = $twytController;
-        $this->imagesPath = '/mytwyt/images';//self::BASE_URL .
+        $this->imagesPath = '/mytwyt/images'; //self::BASE_URL .
     }
 
     private function getTwytList($jsonFile, $isFavarite)
@@ -38,7 +38,7 @@ class TwytView
             foreach ($homeTwytList as $item) {
 
                 $link = $item->getTwytUserUrl();
-                $twytLink ="https://twitter.com/{$item->getTwytUserScreenName()}/status/{$item->getTwytId()}";
+                $twytLink = "https://twitter.com/{$item->getTwytUserScreenName()}/status/{$item->getTwytId()}";
                 $shareLink = ($link == "") ? $twytLink : $link;
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
@@ -70,6 +70,8 @@ class TwytView
                             </p>
 
                             <div class='tywyt-user-actions'>
+
+                                <input type='checkbox' name='selFavorite' id='chk-favorite{$twytId}' value=''/>
                                
                                 <button type='submit' id='btn-share{$twytId}' onclick=\"shareTwyt(
                                     '$twytId',
@@ -110,7 +112,7 @@ class TwytView
             foreach ($twytList as $item) {
 
                 $link = $item->getTwytUserUrl();
-                $twytLink ="https://twitter.com/{$item->getTwytUserScreenName()}/status/{$item->getTwytId()}";
+                $twytLink = "https://twitter.com/{$item->getTwytUserScreenName()}/status/{$item->getTwytId()}";
                 $shareLink = ($link == "") ? $twytLink : $link;
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
@@ -131,7 +133,7 @@ class TwytView
                                 <p>" . $item->getTwytText() . "</p>
                             </div>
                             <div class='twyt-url'>
-                                <span>{$newLink } </span>
+                                <span>{$newLink} </span>
                             </div>
                             <br><br>
                             <div class='tywyt-user'>
@@ -140,8 +142,10 @@ class TwytView
                                     <span>@" . $item->getTwytCreatedAt() . "</span>
                                 </p>
                                 <div class='tywyt-user-actions'>
+
+                                <input type='checkbox' name='selFavorite' id='chk-favorite{$twytId}' value=''/>
                                
-                                <button type='submit' id='btn-share{$twytId}' onclick=\"shareTwyt(
+                                <button type='button' id='btn-share{$twytId}' onclick=\"shareTwyt(
                                     '$twytId',
                                     '$twytTextSanitized',
                                     '{$item->getTwytUserScreenName()}',
@@ -149,7 +153,7 @@ class TwytView
                                     '{$item->getTwytCreatedAt()}')\">
                                     Share
                                 </button>
-                                <button type='submit' id='btn-{$twytId}' {$this->disabled} onclick=\"addToFavorite(
+                                <button type='button' id='btn-{$twytId}' {$this->disabled} onclick=\"addToFavorite(
                                     '$twytId',
                                     '$twytTextSanitized',
                                     '{$item->getTwytUserScreenName()}',
@@ -180,7 +184,7 @@ class TwytView
             $viewString = "<div class='twyt-list-wrapper'>";
             foreach ($userTimelineTwyts as $item) {
                 $link = $item->getTwytUserUrl();
-                $twytLink ="https://twitter.com/{$item->getTwytUserScreenName()}/status/{$item->getTwytId()}";
+                $twytLink = "https://twitter.com/{$item->getTwytUserScreenName()}/status/{$item->getTwytId()}";
                 $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
                 $shareLink = ($link == "") ? $twytLink : $link;
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());

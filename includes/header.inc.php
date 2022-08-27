@@ -1,6 +1,6 @@
 <?php header('Access-Control-Allow-Origin: *');  ?>
 <!DOCTYPE html>
-    <html lang='en'>
+    <html lang='en' id="site-html">
     <head>
         <meta charset='UTF-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -11,9 +11,9 @@
         <title>mytwyt</title>
         <link rel="icon" type="image/x-icon" href="/mytwyt/favicon/favicon.png">
     </head>
-        <body>
+        <body id="site-body">
             <main>
-                <div class='main-content-wrapper'>
+                <div class="main-content-wrapper">
                     <div class="header">
                        
                         <span id="span-header" onclick="hideShowNav()">mytwyt</span>
@@ -46,4 +46,18 @@
                                 </li>
                             </ul>
                         </nav>
+                    </div>
+                    <div id="action-header">
+                        <button type="button" onclick="selectAll()">Select All</button>
+                        <button type="button" onclick="shareSelected()">Share</button>
+                        <button type="button" id="btnFavoritesSelected" onclick="addFavoritesSelected()">
+                            <?php
+                              if($page != "favorite"){
+                                echo ("Add Favorites");
+                            }
+                              else{
+                                echo ("Remove Favorites");
+                            }
+                            ?>
+                        </button>
                     </div>

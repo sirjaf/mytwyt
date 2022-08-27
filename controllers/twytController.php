@@ -52,10 +52,38 @@ class TwytController
         $this->dbService->addFavoriteToDb($twytId, $twytText, $twytUserScreenName, $twytUserUrl, $twytCreatedAt, $twytProfileImage);
     }
 
+public function addFavoritesSelected(array $favoritesSelected){
+
+    foreach ($favoritesSelected as $favorite) {
+        $this->addFavorite(
+            $favorite['twytId'],
+            $favorite['twytText'],
+            $favorite['twytUserScreenName'],
+            $favorite['twytUrl'],
+            $favorite['twytCreatedAt'],
+            $favorite['twytImage']
+        );
+        
+
+    }
+    echo (json_encode($favoritesSelected,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));
+
+}
+
+public function deleteFavoritesSelected(array $favoritesSelected){
+
+    foreach ($favoritesSelected as $favorite) {
+        $this->deleteFavorite($favorite['twytId']);
+    }
+    echo (json_encode($favoritesSelected,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));
+}
+
     public function deleteFavorite(string $favoriteId)
     {
         $this->dbService->deleteFavoriteFromDb($favoriteId);
     }
+
+
 
     public static function getValidUrl($testItem)
     {

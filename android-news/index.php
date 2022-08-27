@@ -8,7 +8,9 @@
     "football" => "",
     "favorites" => "",
     "search" => ""
-); ?>
+); 
+$page = "android-news";
+?>
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/includes/header.inc.php'; ?>
 <?php
 date_default_timezone_set("Africa/Lagos");

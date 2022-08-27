@@ -7,7 +7,9 @@
     --primary-color: #144083;
     --secondary-color: #388f3d;
     --ascent-color: red;
-    --border-color: white;
+    --border-color-white: white;
+    --border-color-black: black;
+
     font-size: 1.0rem;
 }
 
@@ -35,7 +37,7 @@ main {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background-color: var(--border-color);
+    background-color: var(--border-color-white);
     position: -webkit-sticky;
     position: sticky;
     top: 0px;
@@ -49,10 +51,10 @@ main {
 .header>span {
     color: var(--primary-color);
     font-size: 2.0rem;
-    background-color: var(--border-color);
+    background-color: var(--border-color-white);
     padding: 5px;
     margin-left: 10px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-color-white);
     border-radius: 5px;
 
 }
@@ -61,7 +63,7 @@ nav {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    background-color: var(--border-color);
+    background-color: var(--border-color-white);
 }
 
 ul {
@@ -85,7 +87,7 @@ ul {
 
 ul>li {
     list-style: none;
-    background-color: var(--border-color);
+    background-color: var(--border-color-white);
     padding: 5px 5px;
     font-size: 1.05rem;
      /*var(--primary-color); */
@@ -105,14 +107,14 @@ ul>li>a {
 .active {
     list-style: none;
     background: var(--primary-color);
-    color: var(--border-color);
+    color: var(--border-color-white);
     border-radius: 5px;
     outline-style: solid;
     outline-width: 1px;
 }
 
 .active a {
-    color: var(--border-color);
+    color: var(--border-color-white);
 
 }
 
@@ -143,6 +145,17 @@ ul>:last-child {
 
 }
 
+#action-header{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 65px;
+    left: 0px;
+    padding: 5px;
+    background-color: white;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+}
+
 img {
     margin: 0px 10px;
     border-radius: 10%;
@@ -159,10 +172,11 @@ button {
     margin-right: 5px;
     padding: 10px 5px;
     background-color: var(--ascent-color);
-    color: var(--border-color);
-    border: 1px solid var(--border-color);
+    color: var(--border-color-white);
+    border: 1px solid var(--border-color-black);
     border-radius: 5px;
     font-weight: bold;
+
 }
 
 input[type=text] {
@@ -202,7 +216,7 @@ input[type=text] {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    background-color: var(--border-color);
+    background-color: var(--border-color-white);
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
@@ -269,7 +283,7 @@ input[type=text] {
 
     padding: 10px 0px;
     border-top: 2px solid var(--primary-color);
-    background-color: var(--boder-color);
+    background-color: var(--border-color-white);
     color: black;
     margin-top: 10px;
 }
@@ -300,7 +314,7 @@ input[type=text] {
 
 .tywyt-user * a {
     background-color: var(--primary-color);
-    color: var(--border-color);
+    color: var(--border-color-white);
     text-decoration: none;
     padding: 5px;
     border-radius: 5px;
@@ -323,7 +337,7 @@ input[type=text] {
 footer {
     width: 65%;
     margin: auto;
-    background-color: var(--border-color);
+    background-color: var(--border-color-white);
     border: 2px solid var(--primary-color);
     border-radius: 5px
    
@@ -339,7 +353,7 @@ footer {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background-color: var(--border-color);
+    background-color: var(--border-color-white);
     color: var(--primary-color);
     width: 100%;
     height: 50px;
@@ -428,7 +442,11 @@ footer {
         -ms-flex-direction: column;
         flex-direction: column;
     }
-
+    #action-header{
+        position: -webkit-sticky;
+        position: sticky;
+        top: 340px;
+    }
     /* .header:hover nav{
         display: block;
     } */

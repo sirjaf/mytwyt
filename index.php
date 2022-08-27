@@ -11,6 +11,7 @@ $activeArray = array(
     "favorites" => "",
     "search" => ""
 );
+$page = "home";
 include_once $_SERVER['DOCUMENT_ROOT'] . '/mytwyt/includes/header.inc.php'; 
 
 try {
@@ -24,7 +25,8 @@ try {
     $twytController = new TwytController(new DbService(), new TwytService(new DbService()), new Connection());
     $twytView = new TwytView($twytController);
    // if ($twytService->createHomeTimelineJson() !== null) $twytService->createHomeTimelineJson();
-    echo $twytView->homeTimelimeView();
+    //echo $twytView->homeTimelimeView();
+    echo $twytView->view($twytController->getHomeTimelineJson(), false);
 } catch (\Throwable $e) {
     echo $e->getMessage();
 }
