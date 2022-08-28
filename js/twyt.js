@@ -220,35 +220,35 @@ function addFavoritesSelected() {
 
 }
 
-function shareSelected() {
-  let sharesSelected = [];
-  isShareClicked = true;
-  sharesSelected = twytsSelected();
-  if (sharesSelected.length == 0) {
-    alert("No Twyt selected. Please, select atleast One(1) Twyt");
-    return;
-  }
-  if (navigator.share) {
-    sharesSelected.forEach((twyt) => {
-      navigator
-        .share({
-          title: `Posted by ${twyt.twytUserScreenName} @${twyt.twytCreatedAt}`,
-          text: twyt.twytText,
-          url: twyt.twytUrl,
-        })
-        .then(console.log("Successful share"))
-        .catch(console.error);
-    });
-  } else {
-    alert("Your browser doesn't support share API");
-  }
+// function shareSelected() {
+//   let sharesSelected = [];
+//   isShareClicked = true;
+//   sharesSelected = twytsSelected();
+//   if (sharesSelected.length == 0) {
+//     alert("No Twyt selected. Please, select atleast One(1) Twyt");
+//     return;
+//   }
+//   if (navigator.share) {
+//     sharesSelected.forEach((twyt) => {
+//       navigator
+//         .share({
+//           title: `Posted by ${twyt.twytUserScreenName} @${twyt.twytCreatedAt}`,
+//           text: twyt.twytText,
+//           url: twyt.twytUrl,
+//         })
+//         .then(console.log("Successful share"))
+//         .catch(console.error);
+//     });
+//   } else {
+//     alert("Your browser doesn't support share API");
+//   }
 
-  isShareClicked = false;
-  twyts = [];
-  selectedTwyts = [];
-  splitted = [];
-  console.log(sharesSelected);
-}
+//   isShareClicked = false;
+//   twyts = [];
+//   selectedTwyts = [];
+//   splitted = [];
+//   console.log(sharesSelected);
+// }
 
 function addToFavorite(
   twytId,

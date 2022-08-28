@@ -49,7 +49,7 @@
                     </div>
                     <div id="action-header">
                         <button type="button" onclick="selectAll()">Select All</button>
-                        <button type="button" onclick="shareSelected()">Share</button>
+                        <!-- <button type="button" onclick="shareSelected()">Share</button> -->
                         <button type="button" id="btnFavoritesSelected" onclick="addFavoritesSelected()">
                             <?php
                               if($page != "favorite"){
