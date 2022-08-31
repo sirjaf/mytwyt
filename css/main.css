@@ -307,6 +307,11 @@ input[type=text] {
     color: black;
 }
 
+button:hover {
+    background-color: white;
+    color: black;
+}
+
 .tywyt-user-actions>button:disabled {
     background-color: grey;
     color: white;
