@@ -213,7 +213,9 @@ class TwytView
                             
                             <p>Posted by: " . $item->getTwytUserScreenName() . "<span>@" . $item->getTwytCreatedAt() . "</span></p>
                             <div class='tywyt-user-actions'>
-                               
+
+                                <input type='checkbox' name='selFavorite' id='chk-favorite{$twytId}' value=''/>
+                                
                                 <button type='submit' id='btn-share{$twytId}' onclick=\"shareTwyt(
                                     '$twytId',
                                     '$twytTextSanitized',

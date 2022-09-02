@@ -130,8 +130,11 @@ function addFavoritesSelected() {
   let strFavoriteSelected = "";
   isAddFavoriteClicked = true;
 
-  let bodyTag = document.getElementById("site-body");
+  //let bodyTag = document.getElementById("site-body");
+  let bodyTag = document.body;
   let btnFavoritesSelected = document.getElementById("btnFavoritesSelected");
+  //bodyTag.classList.add("work-in-progress");
+  btnFavoritesSelected.classList.add("work-in-progress");
   bodyTag.style.cursor = "wait";
   favoritesSelected = twytsSelected();
   strFavoriteSelected = JSON.stringify(favoritesSelected);
@@ -141,7 +144,7 @@ function addFavoritesSelected() {
     alert(
       "Please, select atleast One(1) Twyt that is not already added to favorite"
     );
-    bodyTag.style.cursor = "default";
+    bodyTag.classList.remove("work-in-progress");
     return;
   }
   if (btnFavoritesSelected.innerHTML.trim() == "Remove Favorites"){
@@ -161,7 +164,7 @@ function addFavoritesSelected() {
           console.log("Success:", data);
         })
         .catch((error) => {
-          bodyTag.style.cursor = "default";
+          bodyTag.classList.remove("work-in-progress");
           console.log("Error:", error);
         });
     
@@ -177,14 +180,11 @@ function addFavoritesSelected() {
         ()=>{
             location.reload(true);
         },2000);
-        bodyTag.style.cursor = "default";
+        bodyTag.classList.remove("work-in-progress");
   }
 
   if (btnFavoritesSelected.innerHTML.trim() == "Add Favorites"){
     console.log("Add Favorites button clicked");
-    //bodyTag.style.cursor = "wait";
-    // strFavoriteSelected = JSON.stringify(favoritesSelected);
-
   fetch("/mytwyt/favorites/addFavoritesSelected.php", {
     method: "POST",
     headers: {
@@ -199,7 +199,7 @@ function addFavoritesSelected() {
       console.log("Success:", data);
     })
     .catch((error) => {
-      bodyTag.style.cursor = "default";
+      bodyTag.classList.remove("work-in-progress");
       console.log("Error:", error);
     });
 
@@ -209,14 +209,13 @@ function addFavoritesSelected() {
   selectedTwyts = [];
   splitted = [];
   console.log(favoritesSelected);
-  
-
   setTimeout(
     ()=>{
         location.reload(true);
     },2000);
-    bodyTag.style.cursor = "default";
+    bodyTag.classList.remove("work-in-progress");
   }
+  bodyTag.classList.remove("work-in-progress");
 
 }
 
@@ -259,11 +258,12 @@ function addToFavorite(
   twytProfileImage
 ) {
   var btnAddedToFavorite = document.getElementById(`btn-${twytId}`);
-  let bodyTag = document.getElementById("site-body");
+  btnAddedToFavorite.classList.add("work-in-progress");
+  //let bodyTag = document.getElementById("site-body");
+  let bodyTag = document.body;
   bodyTag.style.cursor = "wait";
   if (btnAddedToFavorite.innerHTML == "Add to Favorite") {
     btnAddedToFavorite.setAttribute("disabled", "disabled");
-
     fetch("/mytwyt/favorites/addFavorite.php", {
       method: "POST",
       headers: {
@@ -294,11 +294,16 @@ function addToFavorite(
           btnAddedToFavorite.removeAttribute("disabled");
           btnAddedToFavorite.disabled = false;
         }
+        btnAddedToFavorite.classList.remove("work-in-progress");
+        bodyTag.style.cursor = "default";
       })
       .catch((error) => {
+        btnAddedToFavorite.classList.remove("work-in-progress");
         bodyTag.style.cursor = "default";
+
         console.log(error);
     });
+    //btnAddedToFavorite.classList.remove("work-in-progress");
     bodyTag.style.cursor = "default";
   } else {
     btnAddedToFavorite.setAttribute("disabled", "disabled");
@@ -319,9 +324,11 @@ function addToFavorite(
       })
       .catch((error) => {
         btnAddedToFavorite.setAttribute("disabled", "");
+        btnAddedToFavorite.classList.remove("work-in-progress");
         bodyTag.style.cursor = "default";
         console.log(error);
       });
+      //btnAddedToFavorite.classList.remove("work-in-progress");
       bodyTag.style.cursor = "default";
   }
 }

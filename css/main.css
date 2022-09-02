@@ -11,6 +11,7 @@
     --border-color-black: black;
 
     font-size: 1.0rem;
+    cursor: default;
 }
 
 body {
@@ -188,8 +189,6 @@ input[type=text] {
     border-radius: 5px;
     font-weight: bold;
 }
-
-
 
 .main-content-wrapper {
     margin: auto;
@@ -385,6 +384,10 @@ footer {
     -webkit-animation: 1.0s linear infinite spinner;
     animation: 1.0s linear infinite spinner;
 
+}
+
+.work-in-progress{
+    cursor: wait;
 }
 
 @-webkit-keyframes spinner {
