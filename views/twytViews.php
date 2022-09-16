@@ -145,7 +145,7 @@ class TwytView
 
                                 <div class='tywyt-user-actions'>
                                  
-                                <input type='checkbox' name='selFavorite' id='chk-favorite{$twytId}' value='' aria-label='select' style='margin-top: 10px;margin-bottom: 10px;margin-left: 10px;margin-right: 10px;'/>
+                                <input type='checkbox' name='selFavorite' id='chk-favorite{$twytId}' value='' aria-label='select' style='margin-top: 10px;margin-bottom: 10px;margin-left: 10px;margin-right: 10px;width: 16px;height: 16px;'/>
                         
                                 <button type='button' id='btn-share{$twytId}' onclick=\"shareTwyt(
                                     '$twytId',
