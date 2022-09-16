@@ -143,10 +143,8 @@ class TwytView
                                     <span>@" . $item->getTwytCreatedAt() . "</span>
                                 </p>
                                 <div class='tywyt-user-actions'>
-                                <label for='selFavorite' style='display: none;'>
-                                    select twyt
-                                </label>    
-                                <input type='checkbox' name='selFavorite' id='chk-favorite{$twytId}' value=''/>
+                                  
+                                <input type='checkbox' name='selFavorite' id='chk-favorite{$twytId}' value='' aria-label='select'/>
                                
                                 <button type='button' id='btn-share{$twytId}' onclick=\"shareTwyt(
                                     '$twytId',
