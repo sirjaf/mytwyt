@@ -12,12 +12,29 @@
 
     font-size: 1.0rem;
     cursor: default;
+    scrollbar-width: auto;
+    scrollbar-color: #A80000 white;
 }
+
+*::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: white;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #A80000;
+    border-radius: 20px;
+    border: 3px solid white;
+  }
 
 body {
    
     background-color: whitesmoke;
     min-height: 90vh;
+    
 }
 
 main {
