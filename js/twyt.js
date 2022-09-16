@@ -121,6 +121,7 @@ function twytsSelected() {
   //console.log(twyts[0].id)//twytId;
 }
 
+
 // function isSelected(arrCard){
 
 // }
@@ -138,8 +139,7 @@ function addFavoritesSelected() {
   bodyTag.style.cursor = "wait";
   favoritesSelected = twytsSelected();
   strFavoriteSelected = JSON.stringify(favoritesSelected);
-//   console.log(btnFavoritesSelected.innerHTML.trim());
-//   return;
+
   if (favoritesSelected.length == 0) {
     alert(
       "Please, select atleast One(1) Twyt that is not already added to favorite"
@@ -185,7 +185,7 @@ function addFavoritesSelected() {
 
   if (btnFavoritesSelected.innerHTML.trim() == "Add Favorites"){
     console.log("Add Favorites button clicked");
-  fetch("/mytwyt/favorites/addFavoritesSelected.php", {
+    fetch("/mytwyt/favorites/addFavoritesSelected.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json; charset=UTF-8",
@@ -203,7 +203,7 @@ function addFavoritesSelected() {
       console.log("Error:", error);
     });
 
-  //   console.log(strFavoriteSelected);
+  
   isAddFavoriteClicked = false;
   twyts = [];
   selectedTwyts = [];

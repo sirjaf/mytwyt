@@ -10,6 +10,7 @@ class TwytView
     private $btnText;
     private $imagesPath;
     const BASE_URL = "https://jafsoft.com.ng";
+    
     public function __construct($twytController)
     {
         $this->twytController = $twytController;
@@ -27,79 +28,79 @@ class TwytView
         }
     }
 
-    public function homeTimelimeView()
-    {
-        try {
+    // public function homeTimelimeView()
+    // {
+    //     try {
 
-            $homeTwytList = $this->getTwytList($this->twytController->getHomeTimelineJson(), false);
-            $this->btnText = "Add to Favorite";
-            $viewString = "<div class='twyt-list-wrapper'>";
-            $mySqliConnection = $this->twytController->getMsqliConnection();
-            foreach ($homeTwytList as $item) {
+    //         $homeTwytList = $this->getTwytList($this->twytController->getHomeTimelineJson(), false);
+    //         $this->btnText = "Add to Favorite";
+    //         $viewString = "<div class='twyt-list-wrapper'>";
+    //         $mySqliConnection = $this->twytController->getMsqliConnection();
+    //         foreach ($homeTwytList as $item) {
 
-                $link = $item->getTwytUserUrl();
-                $twytLink = "https://twitter.com/{$item->getTwytUserScreenName()}/status/{$item->getTwytId()}";
-                $shareLink = ($link == "") ? $twytLink : $link;
-                $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
+    //             $link = $item->getTwytUserUrl();
+    //             $twytLink = "https://twitter.com/{$item->getTwytUserScreenName()}/status/{$item->getTwytId()}";
+    //             $shareLink = ($link == "") ? $twytLink : $link;
+    //             $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
 
-                $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
-                $twytText = mysqli_real_escape_string($mySqliConnection, $item->getTwytText());
-                $twytTextSanitized = htmlspecialchars($twytText);
+    //             $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
+    //             $twytText = mysqli_real_escape_string($mySqliConnection, $item->getTwytText());
+    //             $twytTextSanitized = htmlspecialchars($twytText);
 
-                if ($this->twytController->isTwytInDb($twytId) == true) {
-                    $this->disabled = "disabled";
-                } else {
-                    $this->disabled = "";
-                }
+    //             if ($this->twytController->isTwytInDb($twytId) == true) {
+    //                 $this->disabled = "disabled";
+    //             } else {
+    //                 $this->disabled = "";
+    //             }
 
-                $viewString = $viewString . "
+    //             $viewString = $viewString . "
                 
-                    <div class='tywt-wrapper' id='div-{$item->getTwytId()}'>
-                        <div class='tywt-content'>
-                            <img src='$this->imagesPath/{$item->getTwytUserScreenName()}.jpeg' width=48 height=48 alt='{$item->getTwytUserScreenName()}'>
-                            <p>" . $item->getTwytText() . "</p>
-                        </div>
-                        <div class='twyt-url'>
-                            <span>{$newLink} </span>
-                        </div>
-                        <br><br>
-                        <div class='tywyt-user'>
-                            <p> 
-                                <a href='/mytwyt/search/index.php?screenname={$item->getTwytUserScreenName()}'>{$item->getTwytUserScreenName()} </a>
-                                <span>@" . $item->getTwytCreatedAt() . "</span>
-                            </p>
+    //                 <div class='tywt-wrapper' id='div-{$item->getTwytId()}'>
+    //                     <div class='tywt-content'>
+    //                         <img src='$this->imagesPath/{$item->getTwytUserScreenName()}.jpeg' width=48 height=48 alt='{$item->getTwytUserScreenName()}'>
+    //                         <p>" . $item->getTwytText() . "</p>
+    //                     </div>
+    //                     <div class='twyt-url'>
+    //                         <span>{$newLink} </span>
+    //                     </div>
+    //                     <br><br>
+    //                     <div class='tywyt-user'>
+    //                         <p> 
+    //                             <a href='/mytwyt/search/index.php?screenname={$item->getTwytUserScreenName()}'>{$item->getTwytUserScreenName()} </a>
+    //                             <span>@" . $item->getTwytCreatedAt() . "</span>
+    //                         </p>
 
-                            <div class='tywyt-user-actions'>
+    //                         <div class='tywyt-user-actions'>
 
-                                <input type='checkbox' name='selFavorite' id='chk-favorite{$twytId}' value=''/>
+    //                             <input type='checkbox' name='selFavorite' id='chk-favorite{$twytId}' value=''/>
                                
-                                <button type='submit' id='btn-share{$twytId}' onclick=\"shareTwyt(
-                                    '$twytId',
-                                    '$twytTextSanitized',
-                                    '{$item->getTwytUserScreenName()}',
-                                    '{$shareLink}',
-                                    '{$item->getTwytCreatedAt()}')\">
-                                    Share
-                                </button>
-                                <button type='submit' id='btn-{$twytId}' {$this->disabled} onclick=\"addToFavorite(
-                                    '$twytId',
-                                    '$twytTextSanitized',
-                                    '{$item->getTwytUserScreenName()}',
-                                    '{$link}',
-                                    '{$item->getTwytCreatedAt()}',
-                                    '{$item->getTwytProfileImage()}')\">" .
-                    $this->btnText .
-                    "</button>
+    //                             <button type='submit' id='btn-share{$twytId}' onclick=\"shareTwyt(
+    //                                 '$twytId',
+    //                                 '$twytTextSanitized',
+    //                                 '{$item->getTwytUserScreenName()}',
+    //                                 '{$shareLink}',
+    //                                 '{$item->getTwytCreatedAt()}')\">
+    //                                 Share
+    //                             </button>
+    //                             <button type='submit' id='btn-{$twytId}' {$this->disabled} onclick=\"addToFavorite(
+    //                                 '$twytId',
+    //                                 '$twytTextSanitized',
+    //                                 '{$item->getTwytUserScreenName()}',
+    //                                 '{$link}',
+    //                                 '{$item->getTwytCreatedAt()}',
+    //                                 '{$item->getTwytProfileImage()}')\">" .
+    //                 $this->btnText .
+    //                 "</button>
                                 
-                            </div>    
-                        </div>
-                    </div>";
-            }
-            return $viewString;
-        } catch (\Throwable $e) {
-            echo "Sorry " . $e->getMessage();
-        }
-    }
+    //                         </div>    
+    //                     </div>
+    //                 </div>";
+    //         }
+    //         return $viewString;
+    //     } catch (\Throwable $e) {
+    //         echo "Sorry " . $e->getMessage();
+    //     }
+    // }
 
     public function view($jsonPath, $isFavorite)
     {
