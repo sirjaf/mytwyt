@@ -282,6 +282,12 @@ input[type=text] {
     word-wrap: break-word;
 }
 
+.tywt-content > p {
+    white-space: wrap;
+    word-wrap: anywhere;
+    overflow-wrap: anywhere;
+}
+
 .tywyt-user {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -348,7 +354,9 @@ button:hover {
     -webkit-box-pack: end;
     -ms-flex-pack: end;
     justify-content: flex-end;
-    overflow: hidden;
+    white-space: wrap;
+    word-wrap: anywhere;
+    overflow-wrap: anywhere;
 }
 
 .twyt-url>span {

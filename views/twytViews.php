@@ -115,7 +115,7 @@ class TwytView
                 $link = $item->getTwytUserUrl();
                 $twytLink = "https://twitter.com/{$item->getTwytUserScreenName()}/status/{$item->getTwytId()}";
                 $shareLink = ($link == "") ? $twytLink : $link;
-                $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
+                $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank' rel='noopener noreferrer'>{$link}</a>";
 
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
                 $twytText = mysqli_real_escape_string($mySqliConnection, $item->getTwytText());
@@ -187,7 +187,7 @@ class TwytView
             foreach ($userTimelineTwyts as $item) {
                 $link = $item->getTwytUserUrl();
                 $twytLink = "https://twitter.com/{$item->getTwytUserScreenName()}/status/{$item->getTwytId()}";
-                $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank'>{$link}</a>";
+                $newLink = ($link == null) ? "" : "<a href='{$link}' target='_blank' rel='noopener noreferrer'>{$link}</a>";
                 $shareLink = ($link == "") ? $twytLink : $link;
                 $twytId = mysqli_real_escape_string($mySqliConnection, $item->getTwytId());
                 $twytText = mysqli_real_escape_string($mySqliConnection, $item->getTwytText());
